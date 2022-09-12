@@ -56,10 +56,13 @@ button {
   align-items: center;
   height: 10rem;
   padding: 0 2rem; }
-  .main-header .theme-buttons .theme-button {
-    display: none;
-    column-gap: 0.4rem; }
-  .main-header .theme-buttons .theme-button--active {
-    display: flex; }
+  .main-header .theme-button {
+    display: flex;
+    column-gap: 0.8rem;
+    align-items: center;
+    font-size: 1.6rem; }
+    .main-header .theme-button svg {
+      width: 2rem;
+      height: 2rem; }
 
 /*# sourceMappingURL=styles.css.map */

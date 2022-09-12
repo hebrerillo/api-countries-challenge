@@ -5,14 +5,16 @@
     height: 10rem;
     padding: 0 2rem;
 
-    .theme-buttons {
-        .theme-button {
-            display: none;
-            column-gap: 0.4rem;
-        }
-        
-        .theme-button--active {
-            display: flex;
+    .theme-button {
+        display: flex;
+        column-gap: 0.8rem;
+        align-items: center;
+        font-size: 1.6rem;
+        svg {
+            width: 2rem;
+            height: 2rem;
         }
     }
 }
+
+
