@@ -4,6 +4,8 @@
     align-items: center;
     height: 10rem;
     padding: 0 2rem;
+    background-color: var(--current-elements-background);
+    box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.1);
 
     .theme-button {
         display: flex;
