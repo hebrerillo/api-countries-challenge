@@ -26,7 +26,8 @@ button {
   line-height: 1;
   padding-inline: 0;
   border: none;
-  cursor: pointer; }
+  cursor: pointer;
+  background-color: transparent; }
 
 .main-container {
   min-height: 100vh;
@@ -49,5 +50,16 @@ button {
 
   .heading-2 {
     font-size: 2.4rem; } }
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+  padding: 0 2rem; }
+  .main-header .theme-buttons .theme-button {
+    display: none;
+    column-gap: 0.4rem; }
+  .main-header .theme-buttons .theme-button--active {
+    display: flex; }
 
 /*# sourceMappingURL=styles.css.map */
