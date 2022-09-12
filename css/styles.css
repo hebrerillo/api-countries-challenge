@@ -1,3 +1,11 @@
+:root {
+  --dark-mode-background: hsl(207, 26%, 17%);
+  --light-mode-background: hsl(0, 0%, 98%);
+  --dark-mode-text: hsl(0, 0%, 100%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --current-background: var(--light-mode-background);
+  --current-color-text: var(--light-mode-text); }
+
 html {
   box-sizing: border-box;
   font-size: 50%;
@@ -11,8 +19,12 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1;
-  color: #111517;
-  background-color: #fafafa; }
+  color: var(--current-color-text);
+  background-color: var(--current-background); }
+
+.dark-theme {
+  --current-background: var(--dark-mode-background);
+  --current-color-text: var(--dark-mode-text); }
 
 ul {
   list-style: none; }
@@ -29,7 +41,8 @@ button {
   padding-inline: 0;
   border: none;
   cursor: pointer;
-  background-color: transparent; }
+  background-color: transparent;
+  color: inherit; }
 
 .main-container {
   min-height: 100vh;
@@ -66,5 +79,8 @@ button {
     .main-header .theme-button svg {
       width: 2rem;
       height: 2rem; }
+
+.dark-theme .main-header .theme-button svg path {
+  fill: #fff; }
 
 /*# sourceMappingURL=styles.css.map */

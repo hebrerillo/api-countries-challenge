@@ -1,7 +1,7 @@
 class View {
     
     switchMode() {
-        console.log("switching modes");
+        document.documentElement.classList.toggle('dark-theme');
     }
 }
 

@@ -1,3 +1,13 @@
+:root {
+    --dark-mode-background: hsl(207, 26%, 17%);
+    --light-mode-background: hsl(0, 0%, 98%);
+    --dark-mode-text: hsl(0, 0%, 100%);
+    --light-mode-text: hsl(200, 15%, 8%);
+
+    --current-background: var(--light-mode-background);
+    --current-color-text: var(--light-mode-text);
+}
+
 html {
     box-sizing: border-box;
     font-size: 50%;  /*1 rem = 8px;*/
@@ -12,8 +22,13 @@ html {
 body {
     font-family: 'Nunito Sans', sans-serif;
     line-height: 1;
-    color: hsl(200, 15%, 8%);
-    background-color: hsl(0, 0%, 98%);
+    color: var(--current-color-text);
+    background-color: var(--current-background);
+}
+
+.dark-theme {
+    --current-background: var(--dark-mode-background);
+    --current-color-text: var(--dark-mode-text);
 }
 
 ul {
@@ -35,6 +50,7 @@ button {
     border: none;
     cursor: pointer;
     background-color: transparent;
+    color: inherit;
 }
 
 .main-container {
