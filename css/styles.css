@@ -1,4 +1,8 @@
 :root {
+  --main-elements-horizontal-padding: 2rem;
+  /* The horizontal padding of some core elements like the header or main */
+  --default-box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.08);
+  /** COLORS **/
   --dark-mode-elements-background: hsl(209, 23%, 22%);
   --light-mode-elements-background: hsl(0, 0%, 100%);
   --dark-mode-background: hsl(207, 26%, 17%);
@@ -75,9 +79,9 @@ button {
   justify-content: space-between;
   align-items: center;
   height: 10rem;
-  padding: 0 2rem;
+  padding: 0 var(--main-elements-horizontal-padding);
   background-color: var(--current-elements-background);
-  box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.1); }
+  box-shadow: var(--default-box-shadow); }
   .main-header .theme-button {
     display: flex;
     column-gap: 0.8rem;
@@ -89,5 +93,29 @@ button {
 
 .dark-theme .main-header .theme-button svg path {
   fill: #fff; }
+
+.main-content {
+  padding-top: 3rem;
+  padding-left: var(--main-elements-horizontal-padding);
+  padding-right: var(--main-elements-horizontal-padding);
+  padding-bottom: 6rem; }
+  .main-content .input-search-container {
+    background-color: var(--current-elements-background);
+    padding: 0 4rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    column-gap: 2.5rem;
+    box-shadow: var(--default-box-shadow); }
+    .main-content .input-search-container svg {
+      width: 2rem;
+      height: 2rem; }
+    .main-content .input-search-container .input-search {
+      flex-grow: 1;
+      border: none;
+      outline: none;
+      background-color: inherit;
+      font-size: 1.5rem;
+      color: inherit; }
 
 /*# sourceMappingURL=styles.css.map */

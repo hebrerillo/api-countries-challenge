@@ -3,9 +3,9 @@
     justify-content: space-between;
     align-items: center;
     height: 10rem;
-    padding: 0 2rem;
+    padding: 0 var(--main-elements-horizontal-padding);
     background-color: var(--current-elements-background);
-    box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--default-box-shadow);
 
     .theme-button {
         display: flex;
