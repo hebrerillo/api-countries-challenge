@@ -10,7 +10,9 @@ html {
 
 body {
   font-family: 'Nunito Sans', sans-serif;
-  line-height: 1; }
+  line-height: 1;
+  color: #111517;
+  background-color: #fafafa; }
 
 ul {
   list-style: none; }
