@@ -1,8 +1,7 @@
 import View from './view.js';
 
-class Controller
+class RestApiCountriesController
 {
-
     #view;
     constructor()
     {
@@ -16,4 +15,4 @@ class Controller
     }
 }
 
-const controller = new Controller();
+const controller = new RestApiCountriesController();
