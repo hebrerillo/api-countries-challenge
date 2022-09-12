@@ -1,0 +1,40 @@
+html {
+    box-sizing: border-box;
+    font-size: 50%;  /*1 rem = 8px;*/
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    line-height: 1;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img, picture {
+    display: block;
+}
+
+button {
+    line-height: 1;
+    padding-inline: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.main-container {
+    min-height: 100vh;
+    position: relative;
+    margin: 0 auto;
+}
