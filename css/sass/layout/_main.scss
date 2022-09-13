@@ -5,13 +5,14 @@
     padding-bottom: 6rem;
     
     .input-search-container {
-        background-color: var(--current-elements-background);
-        padding: 0 4rem;
-        height: 6rem;
         display: flex;
         align-items: center;
         column-gap: 2.5rem;
+        padding: 0 4rem;
+        height: 6rem;
+        margin-bottom: 5rem;
         box-shadow: var(--default-box-shadow);
+        background-color: var(--current-elements-background);
 
         svg {
             width: 2rem;

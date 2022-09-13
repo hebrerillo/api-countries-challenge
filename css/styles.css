@@ -100,13 +100,14 @@ button {
   padding-right: var(--main-elements-horizontal-padding);
   padding-bottom: 6rem; }
   .main-content .input-search-container {
-    background-color: var(--current-elements-background);
-    padding: 0 4rem;
-    height: 6rem;
     display: flex;
     align-items: center;
     column-gap: 2.5rem;
-    box-shadow: var(--default-box-shadow); }
+    padding: 0 4rem;
+    height: 6rem;
+    margin-bottom: 5rem;
+    box-shadow: var(--default-box-shadow);
+    background-color: var(--current-elements-background); }
     .main-content .input-search-container svg {
       width: 2rem;
       height: 2rem; }
