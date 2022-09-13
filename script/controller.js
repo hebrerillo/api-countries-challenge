@@ -37,10 +37,19 @@ class RestApiCountriesController
     /**
      * Performs an actual search of countries.
      */
-    performSearch()
+    async performSearch()
     {
-        model.performSearch(this.#inputSearch.value);
-        this.#view.hideSpinner();
+        try {
+            const data = await model.performSearch(this.#inputSearch.value);
+            console.log(data);
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+        finally {
+            this.#view.hideSpinner();
+        }
     }
 }
 
