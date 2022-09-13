@@ -29,6 +29,7 @@ class RestApiCountriesController
      */
     waitBeforePerformRequest()
     {
+        this.#view.showSpinner();
         clearTimeout(this.#timeoutIdAfterSeach);
         this.#timeoutIdAfterSeach = setTimeout(this.performSearch.bind(this), WAITING_TIME_FOR_REQUEST);
     }
@@ -39,6 +40,7 @@ class RestApiCountriesController
     performSearch()
     {
         model.performSearch(this.#inputSearch.value);
+        this.#view.hideSpinner();
     }
 }
 

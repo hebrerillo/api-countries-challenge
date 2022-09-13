@@ -2,11 +2,22 @@ class View
 {
 
     #selectRegion;
-
+    #spinner;
     constructor()
     {
         this.#selectRegion = document.querySelector('.select-region');
+        this.#spinner = document.querySelector('.spinner');
         this.setEvents();
+    }
+
+    showSpinner()
+    {
+        this.#spinner.classList.add('display--spinner');
+    }
+
+    hideSpinner()
+    {
+        this.#spinner.classList.remove('display--spinner');
     }
 
     /**
