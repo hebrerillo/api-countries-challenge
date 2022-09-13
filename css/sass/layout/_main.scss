@@ -3,7 +3,7 @@
     padding-left: var(--main-elements-horizontal-padding);
     padding-right: var(--main-elements-horizontal-padding);
     padding-bottom: 6rem;
-    
+
     .input-search-container {
         display: flex;
         align-items: center;
@@ -24,8 +24,38 @@
             border: none;
             outline: none;
             background-color: inherit;
-            font-size: 1.5rem;
             color: inherit;
+        }
+    }
+
+    .select-region {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 25rem;
+        height: 6rem;
+        padding: 0 2rem;
+        box-shadow: var(--default-box-shadow);
+        background-color: var(--current-elements-background);
+        cursor: pointer;
+        position: relative;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 2rem;
+            position: absolute;
+            left: 0;
+            top: 110%;
+            width: 100%;
+            padding: 3rem;
+            box-shadow: var(--default-box-shadow);
+            background-color: var(--current-elements-background);
+            cursor: auto;
+            
+            li {
+                cursor: pointer;
+            }
         }
     }
 }

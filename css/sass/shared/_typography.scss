@@ -11,6 +11,11 @@
     font-weight: 800;
 }
 
+.input-info {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
 @media only screen and (min-width: $minWidthDesktop) {
     .heading-1 {
         font-size: 3.2rem;
@@ -18,6 +23,10 @@
 
     .heading-2 {
         font-size: 2.4rem;
+    }
+
+    .input-info {
+        font-size: 1.4rem;
     }
 }
 

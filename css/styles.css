@@ -68,12 +68,19 @@ button {
   line-height: 1.4;
   font-weight: 800; }
 
+.input-info {
+  font-size: 1.5rem;
+  font-weight: 400; }
+
 @media only screen and (min-width: 90em) {
   .heading-1 {
     font-size: 3.2rem; }
 
   .heading-2 {
-    font-size: 2.4rem; } }
+    font-size: 2.4rem; }
+
+  .input-info {
+    font-size: 1.4rem; } }
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -116,7 +123,31 @@ button {
       border: none;
       outline: none;
       background-color: inherit;
-      font-size: 1.5rem;
       color: inherit; }
+  .main-content .select-region {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25rem;
+    height: 6rem;
+    padding: 0 2rem;
+    box-shadow: var(--default-box-shadow);
+    background-color: var(--current-elements-background);
+    cursor: pointer;
+    position: relative; }
+    .main-content .select-region ul {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+      position: absolute;
+      left: 0;
+      top: 110%;
+      width: 100%;
+      padding: 3rem;
+      box-shadow: var(--default-box-shadow);
+      background-color: var(--current-elements-background);
+      cursor: auto; }
+      .main-content .select-region ul li {
+        cursor: pointer; }
 
 /*# sourceMappingURL=styles.css.map */
