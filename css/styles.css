@@ -235,7 +235,8 @@ button {
   .countries-wrapper .countries-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 5rem; }
+    gap: 5rem;
+    justify-content: center; }
   .countries-wrapper .spinner {
     display: none;
     position: absolute;
