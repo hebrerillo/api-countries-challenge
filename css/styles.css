@@ -58,6 +58,10 @@ button {
   position: relative;
   margin: 0 auto; }
 
+@media only screen and (min-width: 90em) {
+  html {
+    font-size: 62.5%;
+    /*1 rem = 10px;*/ } }
 .heading-1 {
   font-size: 2.75rem; }
 
@@ -156,5 +160,15 @@ button {
     transform: rotateX(180deg); }
   .main-content .select-region-wrapper.display--regions .regions {
     display: flex; }
+  @media only screen and (min-width: 44rem) {
+    .main-content form {
+      display: flex;
+      justify-content: space-between; }
+      .main-content form .input-search-container {
+        width: 48rem; }
+      .main-content form .select-region-wrapper {
+        width: 20rem; }
+      .main-content form .input-search-container, .main-content form .select-region-wrapper {
+        height: 5.6rem; } }
 
 /*# sourceMappingURL=styles.css.map */

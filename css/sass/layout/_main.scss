@@ -76,4 +76,23 @@
             display: flex;
         }
     }
+
+    @media only screen and (min-width: $minWidthTabletPortrait) {
+        form {
+            display: flex;
+            justify-content: space-between;
+
+            .input-search-container {
+                width: 48rem;
+            }
+
+            .select-region-wrapper {
+                width: 20rem;
+            }
+            
+            .input-search-container, .select-region-wrapper {
+                height: 5.6rem;
+            }
+        }
+    }
 }
