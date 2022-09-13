@@ -46,8 +46,8 @@
             cursor: pointer;
         }
 
-        ul {
-            display: flex;
+        .regions {
+            display: none;
             flex-direction: column;
             row-gap: 2rem;
             position: absolute;
@@ -64,5 +64,16 @@
         }
     }
 
+    .select-region-wrapper.display--regions {
 
+        .select-region {
+            svg {
+                transform: rotateX(180deg);
+            }
+        }
+
+        .regions {
+            display: flex;
+        }
+    }
 }

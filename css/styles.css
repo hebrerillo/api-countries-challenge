@@ -139,8 +139,8 @@ button {
       justify-content: space-between;
       flex-grow: 1;
       cursor: pointer; }
-    .main-content .select-region-wrapper ul {
-      display: flex;
+    .main-content .select-region-wrapper .regions {
+      display: none;
       flex-direction: column;
       row-gap: 2rem;
       position: absolute;
@@ -150,7 +150,11 @@ button {
       padding: 3rem;
       box-shadow: var(--default-box-shadow);
       background-color: var(--current-elements-background); }
-      .main-content .select-region-wrapper ul li {
+      .main-content .select-region-wrapper .regions li {
         cursor: pointer; }
+  .main-content .select-region-wrapper.display--regions .select-region svg {
+    transform: rotateX(180deg); }
+  .main-content .select-region-wrapper.display--regions .regions {
+    display: flex; }
 
 /*# sourceMappingURL=styles.css.map */
