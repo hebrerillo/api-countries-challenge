@@ -9,7 +9,7 @@ class View
     {
         this.#selectRegion = document.querySelector('.select-region');
         this.#spinner = document.querySelector('.spinner');
-        this.#countriesContainer = document.querySelector('.countriesContainer');
+        this.#countriesContainer = document.querySelector('.countries-container');
         this.#controller = controller;
         this.setEvents();
     }
@@ -62,6 +62,7 @@ class View
             console.error("View::showCountries: Expected an array");
             return;
         }
+        this.#countriesContainer.replaceChildren();
         let html = '';
         countriesArray.forEach(country => {
             html += `<div class="country">

@@ -229,13 +229,14 @@ button {
       .form-search .input-search-container, .form-search .select-region-wrapper {
         height: 5.6rem; } }
 
-.countriesContainer {
+.countries-wrapper {
   min-height: 20rem;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5rem; }
-  .countriesContainer .spinner {
+  position: relative; }
+  .countries-wrapper .countries-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem; }
+  .countries-wrapper .spinner {
     display: none;
     position: absolute;
     top: 0;
@@ -244,13 +245,13 @@ button {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 2; }
-    .countriesContainer .spinner img {
+    .countries-wrapper .spinner img {
       display: block;
       margin: 5rem auto 0 auto; }
-  .countriesContainer .spinner.display--spinner {
+  .countries-wrapper .spinner.display--spinner {
     display: block; }
   @media only screen and (min-width: 90em) {
-    .countriesContainer {
+    .countries-wrapper .countries-container {
       gap: 7.3rem; } }
 
 /*# sourceMappingURL=styles.css.map */
