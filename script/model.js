@@ -12,12 +12,13 @@ class Model
     async performSearch(name)
     {
         let timeoutIdFetch;
+        let finalSearch = name ? ('name/' + name) : 'all';
         try
         {
             let abortController = new AbortController();
             timeoutIdFetch = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT);
 
-            const result = await fetch(API_URL + '/' + name, {signal: abortController.signal});
+            const result = await fetch(API_URL + '/' + finalSearch, {signal: abortController.signal});
             return await result.json();
         }
         catch (error)

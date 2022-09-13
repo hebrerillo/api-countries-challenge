@@ -74,7 +74,7 @@ class View
                                 <div class="country__detailed-info">
                                     <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
                                     <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
-                                    <div><span class="title-info">Capital: </span><span class="info-item">${country.capital[0]}</span></div>
+                                    <div><span class="title-info">Capital: </span><span class="info-item">${country.capital && country.capital[0]}</span></div>
                                 </div>
                             </div>
                         </div>`;
