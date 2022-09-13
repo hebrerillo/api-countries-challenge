@@ -110,65 +110,68 @@ button {
   padding-left: var(--main-elements-horizontal-padding);
   padding-right: var(--main-elements-horizontal-padding);
   padding-bottom: 6rem; }
-  .main-content .input-search-container {
+
+.form-search .input-search-container {
+  display: flex;
+  align-items: center;
+  column-gap: 2.5rem;
+  padding: 0 4rem;
+  height: 6rem;
+  margin-bottom: 5rem;
+  box-shadow: var(--default-box-shadow);
+  background-color: var(--current-elements-background); }
+  .form-search .input-search-container svg {
+    width: 2rem;
+    height: 2rem; }
+  .form-search .input-search-container .input-search {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: inherit; }
+  .form-search .input-search-container .input-search::placeholder {
+    opacity: 0.8; }
+.form-search .select-region-wrapper {
+  display: flex;
+  align-items: center;
+  width: 25rem;
+  height: 6rem;
+  box-shadow: var(--default-box-shadow);
+  padding: 0 2rem;
+  background-color: var(--current-elements-background);
+  position: relative; }
+  .form-search .select-region-wrapper .select-region {
     display: flex;
     align-items: center;
-    column-gap: 2.5rem;
-    padding: 0 4rem;
-    height: 6rem;
-    margin-bottom: 5rem;
+    justify-content: space-between;
+    flex-grow: 1;
+    cursor: pointer; }
+  .form-search .select-region-wrapper .regions {
+    display: none;
+    flex-direction: column;
+    row-gap: 2rem;
+    position: absolute;
+    left: 0;
+    top: 110%;
+    width: 100%;
+    padding: 3rem;
     box-shadow: var(--default-box-shadow);
     background-color: var(--current-elements-background); }
-    .main-content .input-search-container svg {
-      width: 2rem;
-      height: 2rem; }
-    .main-content .input-search-container .input-search {
-      flex-grow: 1;
-      border: none;
-      outline: none;
-      background-color: inherit;
-      color: inherit; }
-  .main-content .select-region-wrapper {
-    display: flex;
-    align-items: center;
-    width: 25rem;
-    height: 6rem;
-    box-shadow: var(--default-box-shadow);
-    padding: 0 2rem;
-    background-color: var(--current-elements-background);
-    position: relative; }
-    .main-content .select-region-wrapper .select-region {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-grow: 1;
+    .form-search .select-region-wrapper .regions li {
       cursor: pointer; }
-    .main-content .select-region-wrapper .regions {
-      display: none;
-      flex-direction: column;
-      row-gap: 2rem;
-      position: absolute;
-      left: 0;
-      top: 110%;
-      width: 100%;
-      padding: 3rem;
-      box-shadow: var(--default-box-shadow);
-      background-color: var(--current-elements-background); }
-      .main-content .select-region-wrapper .regions li {
-        cursor: pointer; }
-  .main-content .select-region-wrapper.display--regions .select-region svg {
-    transform: rotateX(180deg); }
-  .main-content .select-region-wrapper.display--regions .regions {
-    display: flex; }
-  @media only screen and (min-width: 44rem) {
-    .main-content form {
-      display: flex;
-      justify-content: space-between; }
-      .main-content form .input-search-container {
-        width: 48rem; }
-      .main-content form .select-region-wrapper {
-        width: 20rem; }
-      .main-content form .input-search-container, .main-content form .select-region-wrapper {
-        height: 5.6rem; } }
+.form-search .select-region-wrapper.display--regions .select-region svg {
+  transform: rotateX(180deg); }
+.form-search .select-region-wrapper.display--regions .regions {
+  display: flex; }
+@media only screen and (min-width: 44rem) {
+  .form-search {
+    display: flex;
+    justify-content: space-between; }
+    .form-search .input-search-container {
+      width: 48rem; }
+    .form-search .select-region-wrapper {
+      width: 20rem; }
+    .form-search .input-search-container, .form-search .select-region-wrapper {
+      height: 5.6rem; } }
 
 /*# sourceMappingURL=styles.css.map */
