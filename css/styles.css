@@ -59,6 +59,10 @@ button {
   margin: 0 auto; }
 
 @media only screen and (min-width: 90em) {
+  :root {
+    --main-elements-horizontal-padding: 8rem;
+    --desktop-min-width: 144rem; }
+
   html {
     font-size: 62.5%;
     /*1 rem = 10px;*/ } }
@@ -110,6 +114,11 @@ button {
   padding-left: var(--main-elements-horizontal-padding);
   padding-right: var(--main-elements-horizontal-padding);
   padding-bottom: 6rem; }
+  @media only screen and (min-width: 90em) {
+    .main-content {
+      padding: 4.8rem 0;
+      max-width: calc(var(--desktop-min-width) - var(--main-elements-horizontal-padding) * 2);
+      margin: 0 auto; } }
 
 .form-search .input-search-container {
   display: flex;

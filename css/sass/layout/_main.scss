@@ -3,4 +3,10 @@
     padding-left: var(--main-elements-horizontal-padding);
     padding-right: var(--main-elements-horizontal-padding);
     padding-bottom: 6rem;
+    
+    @media only screen and (min-width: $minWidthDesktop) {
+        padding: 4.8rem 0;
+        max-width: calc(var(--desktop-min-width) - var(--main-elements-horizontal-padding) * 2);
+        margin: 0 auto;
+    }
 }

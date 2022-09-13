@@ -70,6 +70,12 @@ button {
 }
 
 @media only screen and (min-width: $minWidthDesktop) {
+    
+    :root {
+        --main-elements-horizontal-padding: 8rem;
+        --desktop-min-width: 144rem;
+    }
+    
     html {
         font-size: 62.5%;  /*1 rem = 10px;*/
     }
