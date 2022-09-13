@@ -6,14 +6,29 @@
     font-size: 1.75rem;
 }
 
-.heading-1, .heading-2 {
-    line-height: 1.4;
+.heading-1, .heading-2, .heading-3 {
     font-weight: 800;
+    line-height: 1.4;
+}
+
+.heading-3 {
+    font-size: 2.25rem;
+}
+
+.input-info, .title-info, .info-item {
+    font-size: 1.5rem;
 }
 
 .input-info {
-    font-size: 1.5rem;
     font-weight: 400;
+}
+
+.info-item {
+    font-weight: 300;
+}
+
+.title-info {
+    font-weight: 600;
 }
 
 @media only screen and (min-width: $minWidthDesktop) {
@@ -25,8 +40,12 @@
         font-size: 2.4rem;
     }
 
-    .input-info {
+    .input-info, .title-info, .info-item {
         font-size: 1.4rem;
+    }
+
+    .heading-3 {
+        font-size: 1.8rem;
     }
 }
 

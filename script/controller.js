@@ -41,7 +41,7 @@ class RestApiCountriesController
     {
         try {
             const data = await model.performSearch(this.#inputSearch.value);
-            console.log(data);
+            this.#view.showCountries(data);
         }
         catch(error)
         {

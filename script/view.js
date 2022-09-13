@@ -3,10 +3,14 @@ class View
 
     #selectRegion;
     #spinner;
-    constructor()
+    #countriesContainer;
+    #controller;
+    constructor(controller)
     {
         this.#selectRegion = document.querySelector('.select-region');
         this.#spinner = document.querySelector('.spinner');
+        this.#countriesContainer = document.querySelector('.countriesContainer');
+        this.#controller = controller;
         this.setEvents();
     }
 
@@ -44,6 +48,37 @@ class View
     toggleRegionsDisplay()
     {
         this.#selectRegion.closest('.select-region-wrapper').classList.toggle('display--regions');
+    }
+
+    /**
+     * Insert the countries contained in the array 'countriesArray' in the DOM.
+     *
+     * @param {Array} countriesArray The array containing the countries to be inserted.
+     */
+    showCountries(countriesArray)
+    {
+        if (!countriesArray || !Array.isArray(countriesArray))
+        {
+            console.error("View::showCountries: Expected an array");
+            return;
+        }
+        let html = '';
+        countriesArray.forEach(country => {
+            html += `<div class="country">
+                            <div class="country__flag">
+                               <img src="${country.flags.png}" alt="${country.name.official}"/>
+                            </div>
+                            <div class="country__text">
+                                <h3 class="heading-3">${country.name.official}</h3>
+                                <div class="country__detailed-info">
+                                    <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
+                                    <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
+                                    <div><span class="title-info">Capital: </span><span class="info-item">${country.capital[0]}</span></div>
+                                </div>
+                            </div>
+                        </div>`;
+        });
+        this.#countriesContainer.insertAdjacentHTML('beforeend', html);
     }
 }
 

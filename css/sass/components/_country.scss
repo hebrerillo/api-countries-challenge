@@ -1,0 +1,45 @@
+.country {
+    width: 33rem;
+    height: 42rem;
+    box-shadow: var(--default-box-shadow);
+    background-color: var(--current-elements-background);
+    overflow-y: scroll;
+    .country__flag {
+        img {
+            width: 100%;
+            height: 20rem;
+        }
+    }
+
+    .country__text {
+        padding: 3rem 2rem 0 2rem;
+        .heading-3 {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+        
+        .country__detailed-info {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.8rem;
+        }
+    }
+
+    @media only screen and (min-width: $minWidthDesktop) {
+        width: 26.4rem;
+        height: 33.6rem;
+
+        .country__flag {
+            img {
+                height: 16rem;
+            }
+        }
+
+        .country__text {
+            padding: 2.5rem 2rem 0 2rem;
+            .heading-3 {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+}

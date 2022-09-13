@@ -1,6 +1,9 @@
 .countriesContainer {
     min-height: 20rem;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
 
     .spinner {
         display: none;
@@ -19,5 +22,9 @@
     
     .spinner.display--spinner {
         display: block;
+    }
+    
+    @media only screen and (min-width: $minWidthDesktop) { 
+        gap: 7.3rem;
     }
 }

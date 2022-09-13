@@ -72,13 +72,24 @@ button {
 .heading-2 {
   font-size: 1.75rem; }
 
-.heading-1, .heading-2 {
-  line-height: 1.4;
-  font-weight: 800; }
+.heading-1, .heading-2, .heading-3 {
+  font-weight: 800;
+  line-height: 1.4; }
+
+.heading-3 {
+  font-size: 2.25rem; }
+
+.input-info, .title-info, .info-item {
+  font-size: 1.5rem; }
 
 .input-info {
-  font-size: 1.5rem;
   font-weight: 400; }
+
+.info-item {
+  font-weight: 300; }
+
+.title-info {
+  font-weight: 600; }
 
 @media only screen and (min-width: 90em) {
   .heading-1 {
@@ -87,8 +98,40 @@ button {
   .heading-2 {
     font-size: 2.4rem; }
 
-  .input-info {
-    font-size: 1.4rem; } }
+  .input-info, .title-info, .info-item {
+    font-size: 1.4rem; }
+
+  .heading-3 {
+    font-size: 1.8rem; } }
+.country {
+  width: 33rem;
+  height: 42rem;
+  box-shadow: var(--default-box-shadow);
+  background-color: var(--current-elements-background);
+  overflow-y: scroll; }
+  .country .country__flag img {
+    width: 100%;
+    height: 20rem; }
+  .country .country__text {
+    padding: 3rem 2rem 0 2rem; }
+    .country .country__text .heading-3 {
+      text-align: left;
+      margin-bottom: 3rem; }
+    .country .country__text .country__detailed-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.8rem; }
+  @media only screen and (min-width: 90em) {
+    .country {
+      width: 26.4rem;
+      height: 33.6rem; }
+      .country .country__flag img {
+        height: 16rem; }
+      .country .country__text {
+        padding: 2.5rem 2rem 0 2rem; }
+        .country .country__text .heading-3 {
+          margin-bottom: 2rem; } }
+
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -188,7 +231,10 @@ button {
 
 .countriesContainer {
   min-height: 20rem;
-  position: relative; }
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem; }
   .countriesContainer .spinner {
     display: none;
     position: absolute;
@@ -203,5 +249,8 @@ button {
       margin: 5rem auto 0 auto; }
   .countriesContainer .spinner.display--spinner {
     display: block; }
+  @media only screen and (min-width: 90em) {
+    .countriesContainer {
+      gap: 7.3rem; } }
 
 /*# sourceMappingURL=styles.css.map */
