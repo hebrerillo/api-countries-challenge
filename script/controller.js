@@ -1,4 +1,4 @@
-import View from './view.js';
+import view from './view.js';
 import model from './model.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
 
@@ -9,7 +9,7 @@ class RestApiCountriesController
     #timeoutIdAfterSeach;
     constructor()
     {
-        this.#view = new View(this);
+        this.#view = view;
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
     }
@@ -20,7 +20,6 @@ class RestApiCountriesController
      */
     setEvents()
     {
-        document.querySelector('#theme-button').addEventListener('click', View.prototype.switchMode.bind(this.#view)); //TODO: move to view
         this.#inputSearch.addEventListener('keydown', this.waitBeforePerformRequest.bind(this));
     }
 

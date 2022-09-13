@@ -15,6 +15,7 @@ class View
     setEvents()
     {
         this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
+        document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this)); //TODO: move to view
     }
 
     /**
@@ -35,4 +36,4 @@ class View
     }
 }
 
-export default View;
+export default new View;
