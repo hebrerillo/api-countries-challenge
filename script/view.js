@@ -52,6 +52,7 @@ class View
 
         this.#currentRegion = clickedRegion.dataset.value;
         this.displayCurrentRegion();
+        this.filterCountries();
     }
 
     /**
@@ -78,6 +79,22 @@ class View
     toggleRegionsDisplay()
     {
         this.#selectRegion.closest('.select-region-wrapper').classList.toggle('display--regions');
+    }
+
+    filterCountries()
+    {
+        let countriesChildren = this.#countriesContainer.children;
+        for(let i = 0; i < countriesChildren.length; i++)
+        {
+            if (!this.#currentRegion || countriesChildren[i].dataset.region === this.#currentRegion)
+            {
+                countriesChildren[i].classList.remove('country--hidden');
+            }
+            else
+            {
+                countriesChildren[i].classList.add('country--hidden');
+            }
+        }
     }
 
     /**
