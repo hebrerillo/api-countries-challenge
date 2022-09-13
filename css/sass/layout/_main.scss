@@ -28,17 +28,23 @@
         }
     }
 
-    .select-region {
+    .select-region-wrapper {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         width: 25rem;
         height: 6rem;
-        padding: 0 2rem;
         box-shadow: var(--default-box-shadow);
+        padding: 0 2rem;
         background-color: var(--current-elements-background);
-        cursor: pointer;
         position: relative;
+
+        .select-region {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            cursor: pointer;
+        }
 
         ul {
             display: flex;
@@ -51,11 +57,12 @@
             padding: 3rem;
             box-shadow: var(--default-box-shadow);
             background-color: var(--current-elements-background);
-            cursor: auto;
-            
+
             li {
                 cursor: pointer;
             }
         }
     }
+
+
 }

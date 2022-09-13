@@ -124,18 +124,22 @@ button {
       outline: none;
       background-color: inherit;
       color: inherit; }
-  .main-content .select-region {
+  .main-content .select-region-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 25rem;
     height: 6rem;
-    padding: 0 2rem;
     box-shadow: var(--default-box-shadow);
+    padding: 0 2rem;
     background-color: var(--current-elements-background);
-    cursor: pointer;
     position: relative; }
-    .main-content .select-region ul {
+    .main-content .select-region-wrapper .select-region {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 1;
+      cursor: pointer; }
+    .main-content .select-region-wrapper ul {
       display: flex;
       flex-direction: column;
       row-gap: 2rem;
@@ -145,9 +149,8 @@ button {
       width: 100%;
       padding: 3rem;
       box-shadow: var(--default-box-shadow);
-      background-color: var(--current-elements-background);
-      cursor: auto; }
-      .main-content .select-region ul li {
+      background-color: var(--current-elements-background); }
+      .main-content .select-region-wrapper ul li {
         cursor: pointer; }
 
 /*# sourceMappingURL=styles.css.map */
