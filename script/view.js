@@ -5,12 +5,14 @@ class View
     #spinner;
     #countriesContainer;
     #controller;
+    #currentRegion;
     constructor(controller)
     {
         this.#selectRegion = document.querySelector('.select-region');
         this.#spinner = document.querySelector('.spinner');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#controller = controller;
+        this.#currentRegion = '';
         this.setEvents();
     }
 
@@ -30,7 +32,35 @@ class View
     setEvents()
     {
         this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
-        document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this)); //TODO: move to view
+        document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
+        document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
+    }
+
+    /**
+     * Sets the current region.
+     * 
+     * @param {Event} event The event triggered in the click
+     */
+    setCurrentRegion(event)
+    {
+        this.toggleRegionsDisplay();
+        const clickedRegion = event.target.closest('.region');
+        if (!clickedRegion)
+        {
+            return;
+        }
+
+        this.#currentRegion = clickedRegion.dataset.value;
+        this.displayCurrentRegion();
+    }
+
+    /**
+     * Displays the current region in the fake select.
+     */
+    displayCurrentRegion()
+    {
+        let finalRegion = this.#currentRegion || 'Filter by Region';
+        this.#selectRegion.querySelector('[data-current-region]').textContent = finalRegion;
     }
 
     /**
@@ -65,7 +95,7 @@ class View
         this.#countriesContainer.replaceChildren();
         let html = '';
         countriesArray.forEach(country => {
-            html += `<div class="country">
+            html += `<div class="country" data-region="${country.region}">
                             <div class="country__flag">
                                <img src="${country.flags.png}" alt="${country.name.official}"/>
                             </div>

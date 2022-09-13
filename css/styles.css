@@ -210,9 +210,12 @@ button {
       width: 100%;
       padding: 3rem;
       box-shadow: var(--default-box-shadow);
-      background-color: var(--current-elements-background); }
-      .form-search .select-region-wrapper .regions li {
+      background-color: var(--current-elements-background);
+      z-index: 4; }
+      .form-search .select-region-wrapper .regions .region {
         cursor: pointer; }
+      .form-search .select-region-wrapper .regions .region:hover {
+        font-weight: 800; }
   .form-search .select-region-wrapper.display--regions .select-region svg {
     transform: rotateX(180deg); }
   .form-search .select-region-wrapper.display--regions .regions {

@@ -57,9 +57,14 @@
             padding: 3rem;
             box-shadow: var(--default-box-shadow);
             background-color: var(--current-elements-background);
+            z-index: 4;
 
-            li {
+            .region {
                 cursor: pointer;
+            }
+            
+            .region:hover {
+                font-weight: 800;
             }
         }
     }
