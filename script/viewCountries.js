@@ -1,4 +1,4 @@
-class View
+class ViewCountries
 {
 
     #selectRegion;
@@ -130,4 +130,4 @@ class View
     }
 }
 
-export default new View;
+export default new ViewCountries;

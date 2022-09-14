@@ -1,15 +1,15 @@
-import view from './view.js';
+import viewCountries from './viewCountries.js';
 import model from './model.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
 
 class RestApiCountriesController
 {
-    #view;
+    #viewCountries;
     #inputSearch;
     #timeoutIdAfterSeach;
     constructor()
     {
-        this.#view = view;
+        this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
         this.performSearch();
@@ -63,9 +63,9 @@ class RestApiCountriesController
     {
         try
         {
-            this.#view.showSpinner();
+            this.#viewCountries.showSpinner();
             const data = await model.performSearch(this.#inputSearch.value);
-            this.#view.showCountries(data);
+            this.#viewCountries.showCountries(data);
         }
         catch (error)
         {
@@ -73,7 +73,7 @@ class RestApiCountriesController
         }
         finally
         {
-            this.#view.hideSpinner();
+            this.#viewCountries.hideSpinner();
         }
     }
 }
