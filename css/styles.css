@@ -240,9 +240,9 @@ button {
   position: relative; }
   .countries-wrapper .countries-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 5rem;
-    justify-content: center; }
+    align-items: center; }
   .countries-wrapper .spinner {
     display: none;
     position: absolute;
@@ -257,6 +257,12 @@ button {
       margin: 5rem auto 0 auto; }
   .countries-wrapper .spinner.display--spinner {
     display: block; }
+  @media only screen and (min-width: 44rem) {
+    .countries-wrapper .countries-container {
+      justify-content: start;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: normal; } }
   @media only screen and (min-width: 90em) {
     .countries-wrapper .countries-container {
       gap: 7.3rem; } }

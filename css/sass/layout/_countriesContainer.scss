@@ -4,9 +4,9 @@
 
     .countries-container {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 5rem;
-        justify-content: center;
+        align-items: center;
     }
 
     .spinner {
@@ -26,6 +26,15 @@
 
     .spinner.display--spinner {
         display: block;
+    }
+
+    @media only screen and (min-width: $minWidthTabletPortrait) {
+        .countries-container {
+            justify-content: start;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: normal;
+        }
     }
 
     @media only screen and (min-width: $minWidthDesktop) {
