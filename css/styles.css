@@ -132,7 +132,7 @@ button {
   box-shadow: var(--default-box-shadow);
   background-color: var(--current-elements-background);
   overflow-y: scroll; }
-  .country .country__flag img {
+  .country .country__flag .country__flag-img {
     width: 100%;
     height: 20rem; }
   .country .country__text {
@@ -148,7 +148,7 @@ button {
     .country {
       width: 26.4rem;
       height: 33.6rem; }
-      .country .country__flag img {
+      .country .country__flag .country__flag-img {
         height: 16rem; }
       .country .country__text {
         padding: 2.5rem 2rem 0 2rem; }
@@ -157,6 +157,9 @@ button {
 
 .country.country--hidden {
   display: none; }
+
+.country.country--invisible {
+  visibility: hidden; }
 
 .main-header {
   display: flex;
