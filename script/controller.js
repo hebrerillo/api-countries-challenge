@@ -21,25 +21,39 @@ class RestApiCountriesController
      */
     setEvents()
     {
-        this.#inputSearch.addEventListener('keypress', this.waitBeforePerformRequest.bind(this));
+        this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
     }
 
     /**
      * Waits for WAITING_TIME_FOR_REQUEST milliseconds after the user has pressed a key before performing the actual request.
      * This will help to not overkill the UI, because sending a request each time the user presses a key is very inefficient.
      * 
-     * @param {Event} Event The event that was associated with the 'keydown'.
      */
-    waitBeforePerformRequest(event)
+    waitBeforePerformRequest()
     {
-        if (!/[a-z]/i.test(event.key))
+        if (!this.checkInputCountry(this.#inputSearch.value))
         {
             return;
         }
         
-        this.#view.showSpinner();
         clearTimeout(this.#timeoutIdAfterSeach);
         this.#timeoutIdAfterSeach = setTimeout(this.performSearch.bind(this), WAITING_TIME_FOR_REQUEST);
+    }
+
+    /**
+     * Checks whether the input country has valid characters.
+     * 
+     * @param {String} inputCountry The input country to check.
+     * @returns {Boolean} true if the input country is valid, false otherwise.
+     */
+    checkInputCountry(inputCountry)
+    {
+        if (inputCountry === "")
+        {
+            return true;
+        }
+
+        return /^[A-Za-z\s]*$/.test(inputCountry);
     }
 
     /**
@@ -47,15 +61,18 @@ class RestApiCountriesController
      */
     async performSearch()
     {
-        try {
+        try
+        {
+            this.#view.showSpinner();
             const data = await model.performSearch(this.#inputSearch.value);
             this.#view.showCountries(data);
         }
-        catch(error)
+        catch (error)
         {
             console.log(error);
         }
-        finally {
+        finally
+        {
             this.#view.hideSpinner();
         }
     }
