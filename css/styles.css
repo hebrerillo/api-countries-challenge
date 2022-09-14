@@ -304,23 +304,40 @@ button {
   .country-container .country-data .country-data__flag {
     width: 100%;
     margin-bottom: 5rem; }
-  .country-container .country-data .country-data__wrapper-info .heading-1 {
+  .country-container .country-data .country-data__text .heading-1 {
     margin-bottom: 3rem; }
-  .country-container .country-data .country-data__wrapper-info .country-data__text-info1, .country-container .country-data .country-data__wrapper-info .country-data__text-info2 {
+  .country-container .country-data .country-data__text .country-data__wrapper-info .country-data__text-info1, .country-container .country-data .country-data__text .country-data__wrapper-info .country-data__text-info2 {
     display: flex;
     flex-direction: column;
     row-gap: 1.5rem;
     margin-bottom: 5rem; }
-  .country-container .country-data .country-data__text-borders .heading-4 {
+  .country-container .country-data .country-data__text .country-data__text-borders .heading-4 {
     margin-bottom: 1.5rem; }
-  .country-container .country-data .country-data__text-borders .border-countries {
+  .country-container .country-data .country-data__text .country-data__text-borders .border-countries {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap; }
-@media only screen and (min-width: 64rem) {
-  .country-container .country-data__flag {
-    margin-bottom: 0; }
-  .country-container .country-data__wrapper-info .heading-1 {
-    margin-bottom: 4rem; } }
+@media only screen and (min-width: 44rem) {
+  .country-container .country-data {
+    display: flex;
+    align-items: center;
+    column-gap: 14rem;
+    max-width: none;
+    margin: 0; }
+    .country-container .country-data .country-data__flag {
+      width: 50%;
+      max-width: 57rem;
+      margin-bottom: 0; }
+    .country-container .country-data .country-data__text {
+      width: 50%; }
+      .country-container .country-data .country-data__text .country-data__wrapper-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5rem;
+        column-gap: 2rem;
+        flex-wrap: wrap;
+        row-gap: 4rem; }
+        .country-container .country-data .country-data__text .country-data__wrapper-info .country-data__text-info1, .country-container .country-data .country-data__text .country-data__wrapper-info .country-data__text-info2 {
+          margin-bottom: 0; } }
 
 /*# sourceMappingURL=styles.css.map */
