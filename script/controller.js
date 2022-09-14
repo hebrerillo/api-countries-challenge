@@ -1,16 +1,19 @@
 import {API_URL} from './config.js';
 import viewCountries from './viewCountries.js';
+import viewCountry from './viewCountry.js';
 import model from './model.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
 
 class RestApiCountriesController
 {
     #viewCountries;
+    #viewCountry;
     #inputSearch;
     #timeoutIdAfterSeach;
     #countriesContainer;
     constructor()
     {
+        this.#viewCountry = viewCountry;
         this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
         this.#countriesContainer = document.querySelector('.countries-container');
@@ -26,6 +29,17 @@ class RestApiCountriesController
     {
         this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
         this.#countriesContainer.addEventListener('click', this.handleCountryClick.bind(this));
+        this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
+    }
+
+    /**
+     * Hides the view of country and shows back the countries view.
+     * 
+     */
+    handleBackClick()
+    {
+        this.#viewCountry.hide();
+        this.#viewCountries.show();
     }
 
     /**
@@ -44,6 +58,8 @@ class RestApiCountriesController
         this.#viewCountries.showSpinner();
         const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
         this.#viewCountries.hideSpinner();
+        this.#viewCountry.show();
+        this.#viewCountries.hide();
     }
 
     /**

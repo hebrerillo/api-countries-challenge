@@ -1,45 +1,51 @@
-.countries-wrapper {
-    min-height: 20rem;
-    position: relative;
+.form-countries-container {
+    .countries-wrapper {
+        min-height: 20rem;
+        position: relative;
 
-    .countries-container {
-        display: flex;
-        flex-direction: column;
-        gap: 5rem;
-        align-items: center;
-    }
+        .countries-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            align-items: center;
+        }
 
-    .spinner {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 2;
-        img {
+        .spinner {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            img {
+                display: block;
+                margin: 5rem auto 0 auto;
+            }
+        }
+
+        .spinner.display--spinner {
             display: block;
-            margin: 5rem auto 0 auto;
+        }
+
+        @media only screen and (min-width: $minWidthTabletPortrait) {
+            .countries-container {
+                justify-content: start;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: normal;
+            }
+        }
+
+        @media only screen and (min-width: $minWidthDesktop) {
+            .countries-container {
+                gap: 7.3rem;
+            }
         }
     }
+}
 
-    .spinner.display--spinner {
-        display: block;
-    }
-
-    @media only screen and (min-width: $minWidthTabletPortrait) {
-        .countries-container {
-            justify-content: start;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: normal;
-        }
-    }
-
-    @media only screen and (min-width: $minWidthDesktop) {
-        .countries-container {
-            gap: 7.3rem;
-        }
-    }
+.form-countries-container.form-countries-container--hide {
+    display: none;
 }

@@ -6,14 +6,32 @@ class ViewCountries
     #countriesContainer;
     #controller;
     #currentRegion;
+    #formAndCountriesContainer;
     constructor(controller)
     {
         this.#selectRegion = document.querySelector('.select-region');
         this.#spinner = document.querySelector('.spinner');
         this.#countriesContainer = document.querySelector('.countries-container');
+        this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
         this.#controller = controller;
         this.#currentRegion = '';
         this.setEvents();
+    }
+
+    /**
+     * Shows the form and the container of countries.
+     */
+    show()
+    {
+        this.#formAndCountriesContainer.classList.remove('form-countries-container--hide');
+    }
+
+    /**
+     * Hides the form and the container of countries.
+     */
+    hide()
+    {
+        this.#formAndCountriesContainer.classList.add('form-countries-container--hide');
     }
 
     showSpinner()
