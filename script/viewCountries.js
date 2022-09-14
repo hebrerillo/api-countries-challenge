@@ -18,6 +18,16 @@ class ViewCountries
         this.setEvents();
     }
 
+
+    /**
+     * Adds a handler when the user clicks a country.
+     * @param {function} handler The handler to be executed when the user clicks a country.
+     */
+    setCountriesClickHandler(handler)
+    {
+        this.#countriesContainer.addEventListener('click', handler);
+    }
+
     /**
      * Shows the form and the container of countries.
      */
@@ -102,7 +112,7 @@ class ViewCountries
     filterCountries()
     {
         let countriesChildren = this.#countriesContainer.children;
-        for(let i = 0; i < countriesChildren.length; i++)
+        for (let i = 0; i < countriesChildren.length; i++)
         {
             if (!this.#currentRegion || countriesChildren[i].dataset.region === this.#currentRegion)
             {

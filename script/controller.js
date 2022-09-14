@@ -10,13 +10,11 @@ class RestApiCountriesController
     #viewCountry;
     #inputSearch;
     #timeoutIdAfterSeach;
-    #countriesContainer;
     constructor()
     {
         this.#viewCountry = viewCountry;
         this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
-        this.#countriesContainer = document.querySelector('.countries-container');
         this.setEvents();
         this.performSearchByName();
     }
@@ -28,8 +26,8 @@ class RestApiCountriesController
     setEvents()
     {
         this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
-        this.#countriesContainer.addEventListener('click', this.handleCountryClick.bind(this));
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
+        this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
     }
 
     /**
