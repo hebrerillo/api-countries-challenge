@@ -12,6 +12,7 @@ class RestApiCountriesController
         this.#view = view;
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
+        this.performSearch();
     }
 
     /**
