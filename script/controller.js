@@ -1,3 +1,4 @@
+import {API_URL} from './config.js';
 import viewCountries from './viewCountries.js';
 import model from './model.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
@@ -54,7 +55,7 @@ class RestApiCountriesController
     {
         try
         {
-            const data = await model.performSearchByCode(code);
+            const data = await model.performSearch(API_URL + 'alpha/' + code);
         }
         catch (error)
         {
@@ -75,7 +76,7 @@ class RestApiCountriesController
         }
 
         clearTimeout(this.#timeoutIdAfterSeach);
-        this.#timeoutIdAfterSeach = setTimeout(this.performSearch.bind(this), WAITING_TIME_FOR_REQUEST);
+        this.#timeoutIdAfterSeach = setTimeout(this.performSearchByName.bind(this), WAITING_TIME_FOR_REQUEST);
     }
 
     /**
@@ -102,7 +103,8 @@ class RestApiCountriesController
         try
         {
             this.#viewCountries.showSpinner();
-            const data = await model.performSearchByName(this.#inputSearch.value);
+            let finalSearch = this.#inputSearch.value ? ('name/' + this.#inputSearch.value) : 'all';
+            const data = await model.performSearch(API_URL + finalSearch);
             this.#viewCountries.showCountries(data);
         }
         catch (error)
