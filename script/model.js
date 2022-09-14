@@ -11,23 +11,14 @@ class Model
      */
     async performSearchByName(name)
     {
-        let timeoutIdFetch;
-        let finalSearch = name ? ('name/' + name) : 'all';
         try
         {
-            let abortController = new AbortController();
-            timeoutIdFetch = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT);
-
-            const result = await fetch(API_URL + finalSearch, {signal: abortController.signal});
-            return await result.json();
+            let finalSearch = name ? ('name/' + name) : 'all';
+            return await this.performSearch(API_URL + finalSearch);
         }
         catch (error)
         {
             throw error;
-        }
-        finally
-        {
-            clearTimeout(timeoutIdFetch);
         }
     }
 
@@ -39,13 +30,31 @@ class Model
      */
     async performSearchByCode(code)
     {
+        try
+        {
+            return await this.performSearch(API_URL + 'alpha/' + code);
+        }
+        catch (error)
+        {
+            throw error;
+        }
+    }
+    
+    /**
+     * Performs a 'fetch' on the URI 'uri' and returns the result.
+     * 
+     * @param {string} uri The URI of the final request.
+     * @returns The contents of fetching the URI 'uri'.
+     */
+    async performSearch(uri) 
+    {
         let timeoutIdFetch;
         try
         {
             let abortController = new AbortController();
             timeoutIdFetch = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT);
 
-            const result = await fetch(API_URL + 'alpha/' + code, {signal: abortController.signal});
+            const result = await fetch(uri, {signal: abortController.signal});
             return await result.json();
         }
         catch (error)
