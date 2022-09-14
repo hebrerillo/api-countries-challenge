@@ -7,10 +7,12 @@ class RestApiCountriesController
     #viewCountries;
     #inputSearch;
     #timeoutIdAfterSeach;
+    #countriesContainer;
     constructor()
     {
         this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
+        this.#countriesContainer = document.querySelector('.countries-container');
         this.setEvents();
         this.performSearch();
     }
@@ -22,6 +24,21 @@ class RestApiCountriesController
     setEvents()
     {
         this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
+        this.#countriesContainer.addEventListener('click', this.handleCountryClick.bind(this));
+    }
+
+    /**
+     * Handles the click event on a country box in the countries view.
+     * 
+     * @param {Event} event The event that was triggered in the click.
+     */
+    handleCountryClick(event)
+    {
+        const clickedCountry = event.target.closest('.country');
+        if (!clickedCountry)
+        {
+            return;
+        }
     }
 
     /**
