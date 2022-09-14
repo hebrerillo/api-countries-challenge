@@ -9,7 +9,7 @@ class Model
      * @param {String} name The name of the country or contries to search for.
      * @returns A JSON object with a list containing the countries that matched 'name'.
      */
-    async performSearch(name)
+    async performSearchByName(name)
     {
         let timeoutIdFetch;
         let finalSearch = name ? ('name/' + name) : 'all';
@@ -18,14 +18,42 @@ class Model
             let abortController = new AbortController();
             timeoutIdFetch = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT);
 
-            const result = await fetch(API_URL + '/' + finalSearch, {signal: abortController.signal});
+            const result = await fetch(API_URL + finalSearch, {signal: abortController.signal});
             return await result.json();
         }
         catch (error)
         {
             throw error;
         }
-        finally {
+        finally
+        {
+            clearTimeout(timeoutIdFetch);
+        }
+    }
+
+    /**
+     * Performs a search of countries by using the acc2 code. 
+     * 
+     * @param {String} code The acc2 code of the country to search for.
+     * @returns A JSON object with the information of the country with acc2 code 'code'.
+     */
+    async performSearchByCode(code)
+    {
+        let timeoutIdFetch;
+        try
+        {
+            let abortController = new AbortController();
+            timeoutIdFetch = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT);
+
+            const result = await fetch(API_URL + 'alpha/' + code, {signal: abortController.signal});
+            return await result.json();
+        }
+        catch (error)
+        {
+            throw error;
+        }
+        finally
+        {
             clearTimeout(timeoutIdFetch);
         }
     }

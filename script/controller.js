@@ -14,7 +14,7 @@ class RestApiCountriesController
         this.#inputSearch = document.querySelector('.input-search');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.setEvents();
-        this.performSearch();
+        this.performSearchByName();
     }
 
     /**
@@ -32,12 +32,33 @@ class RestApiCountriesController
      * 
      * @param {Event} event The event that was triggered in the click.
      */
-    handleCountryClick(event)
+    async handleCountryClick(event)
     {
         const clickedCountry = event.target.closest('.country');
         if (!clickedCountry)
         {
             return;
+        }
+
+        this.#viewCountries.showSpinner();
+        const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
+        this.#viewCountries.hideSpinner();
+    }
+
+    /**
+     * Performs an actual search of countries.
+     * 
+     * @param {string} code The code of the country to search for.
+     */
+    async performSearchByCode(code)
+    {
+        try
+        {
+            const data = await model.performSearchByCode(code);
+        }
+        catch (error)
+        {
+            console.log(error);
         }
     }
 
@@ -52,7 +73,7 @@ class RestApiCountriesController
         {
             return;
         }
-        
+
         clearTimeout(this.#timeoutIdAfterSeach);
         this.#timeoutIdAfterSeach = setTimeout(this.performSearch.bind(this), WAITING_TIME_FOR_REQUEST);
     }
@@ -76,12 +97,12 @@ class RestApiCountriesController
     /**
      * Performs an actual search of countries.
      */
-    async performSearch()
+    async performSearchByName()
     {
         try
         {
             this.#viewCountries.showSpinner();
-            const data = await model.performSearch(this.#inputSearch.value);
+            const data = await model.performSearchByName(this.#inputSearch.value);
             this.#viewCountries.showCountries(data);
         }
         catch (error)
