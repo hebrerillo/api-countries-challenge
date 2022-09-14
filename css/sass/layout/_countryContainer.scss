@@ -1,0 +1,55 @@
+.country-container {
+    .back-button {
+        display: inline-flex;
+        gap: 0.8rem;
+        align-items: center;
+        margin-bottom: 8rem;
+
+        svg {
+            width: 2.25rem;
+            height: 2.25rem;
+        }
+    }
+
+    .country-data__flag {
+        margin-bottom: 5rem;
+    }
+
+    .country-data__wrapper-info {
+        .heading-1 {
+            margin-bottom: 3rem;
+        }
+
+        .country-data__text-info1, .country-data__text-info2 {
+            display: flex;
+            flex-direction: column;
+            row-gap: 1.5rem;
+            margin-bottom: 5rem;
+        }
+    }
+
+    .country-data__text-borders {
+        .heading-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .border-countries {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+    }
+
+    @media only screen and (min-width: $minWidthTabletLandscape) {
+        .country-data__flag {
+            margin-bottom: 0;
+        }
+
+        .country-data__wrapper-info {
+            .heading-1 {
+                margin-bottom: 4rem;
+            }
+        }
+    }
+
+}

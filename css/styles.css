@@ -40,7 +40,8 @@ ul {
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+  cursor: pointer; }
 
 img, picture {
   display: block; }
@@ -79,17 +80,30 @@ button {
 .heading-3 {
   font-size: 2.25rem; }
 
+.heading-4 {
+  font-size: 2rem; }
+
 .input-info, .title-info, .info-item {
   font-size: 1.5rem; }
 
 .input-info {
   font-weight: 400; }
 
-.info-item {
+.info-item, .button {
   font-weight: 300; }
 
-.title-info {
+.title-info, .heading-4 {
   font-weight: 600; }
+
+.button {
+  font-size: 1.75rem;
+  padding: 1rem 3rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 2px; }
+
+.button--small {
+  font-size: 1.5rem;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
 
 @media only screen and (min-width: 90em) {
   .heading-1 {
@@ -102,7 +116,16 @@ button {
     font-size: 1.4rem; }
 
   .heading-3 {
-    font-size: 1.8rem; } }
+    font-size: 1.8rem; }
+
+  .heading-4 {
+    font-size: 1.6rem; }
+
+  .button {
+    font-size: 2rem; }
+
+  .button--small {
+    font-size: 1.4rem; } }
 .country {
   width: 33rem;
   height: 42rem;
@@ -266,5 +289,34 @@ button {
   @media only screen and (min-width: 90em) {
     .countries-wrapper .countries-container {
       gap: 7.3rem; } }
+
+.country-container .back-button {
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 8rem; }
+  .country-container .back-button svg {
+    width: 2.25rem;
+    height: 2.25rem; }
+.country-container .country-data__flag {
+  margin-bottom: 5rem; }
+.country-container .country-data__wrapper-info .heading-1 {
+  margin-bottom: 3rem; }
+.country-container .country-data__wrapper-info .country-data__text-info1, .country-container .country-data__wrapper-info .country-data__text-info2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  margin-bottom: 5rem; }
+.country-container .country-data__text-borders .heading-4 {
+  margin-bottom: 1.5rem; }
+.country-container .country-data__text-borders .border-countries {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; }
+@media only screen and (min-width: 64rem) {
+  .country-container .country-data__flag {
+    margin-bottom: 0; }
+  .country-container .country-data__wrapper-info .heading-1 {
+    margin-bottom: 4rem; } }
 
 /*# sourceMappingURL=styles.css.map */

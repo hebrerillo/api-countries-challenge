@@ -21,30 +21,64 @@
                 </button>
             </header>
             <main class="main-content">
-                <form class="form-search">
-                    <div class="input-search-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Search</title><path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0034.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 00327.3 362.6l94.09 94.09a25 25 0 0035.3-35.3zM97.92 222.72a124.8 124.8 0 11124.8 124.8 124.95 124.95 0 01-124.8-124.8z" fill="#B2B2B2"/></svg>
-                        <input class="input-search input-info" name="input-search" placeholder="Search for a country..." autocomplete="off"/>
-                    </div>
-                    <div class="select-region-wrapper input-info">
-                        <div class="select-region">
-                            <span data-current-region>Filter by Region</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" width="14" height="14"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>
+                <div class="country-container">
+                    <a class="button back-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Back</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/></svg>
+                        <span>Back</span>
+                    </a>
+                    <div class="country-data">
+                        <img class="country-data__flag" alt="" src="https://flagcdn.com/w320/tz.png"/>
+                        <div class="country-data__text">
+                            <div class="country-data__wrapper-info">
+                                <h2 class="heading-1" data-country-name>Belgium</h2>
+                                <div class="country-data__text-info1">
+                                    <div><span class="title-info">Native Name: </span><span class="info-item" data-country-native-name></span></div>
+                                    <div><span class="title-info">Population: </span><span class="info-item" data-country-population></span></div>
+                                    <div><span class="title-info">Region: </span><span class="info-item" data-country-region></span></div>
+                                    <div><span class="title-info">Sub Region: </span><span class="info-item" data-country-sub-region></span></div>
+                                    <div><span class="title-info">Capital: </span><span class="info-item" data-country-sub-capital></span></div>
+                                </div>
+                                <div class="country-data__text-info2">
+                                    <div><span class="title-info">Top level domain: </span><span class="info-item" data-country-level-domain></span></div>
+                                    <div><span class="title-info">Currencies: </span><span class="info-item" data-country-currencies></span></div>
+                                    <div><span class="title-info">Languages: </span><span class="info-item" data-country-languages></span></div>
+                                </div>
+                            </div>
+                            <div class="country-data__text-borders">
+                                <h4 class="heading-4">Borders Countries:</h4>
+                                <div class="border-countries">
+                                    <a class="button button--small">France</a>
+                                </div>
+                            </div>
                         </div>
-                        <ul class="regions">
-                            <li class="region" data-value="">None</li>
-                            <li class="region" data-value="Africa">Africa</li>
-                            <li class="region" data-value="Americas">Americas</li>
-                            <li class="region" data-value="Asia">Asia</li>
-                            <li class="region" data-value="Europe">Europe</li>
-                            <li class="region" data-value="Oceania">Oceania</li>
-                        </ul>
                     </div>
-                </form>
-                <div class="countries-wrapper">
-                    <div class="countries-container"></div>
-                    <div class="spinner">
-                        <img alt="Loading" src="images/loading.svg" />
+                </div>
+                <div class="form-countries-container" style="display: none;">
+                    <form class="form-search">
+                        <div class="input-search-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Search</title><path d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0034.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 00327.3 362.6l94.09 94.09a25 25 0 0035.3-35.3zM97.92 222.72a124.8 124.8 0 11124.8 124.8 124.95 124.95 0 01-124.8-124.8z" fill="#B2B2B2"/></svg>
+                            <input class="input-search input-info" name="input-search" placeholder="Search for a country..." autocomplete="off"/>
+                        </div>
+                        <div class="select-region-wrapper input-info">
+                            <div class="select-region">
+                                <span data-current-region>Filter by Region</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512" width="14" height="14"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>
+                            </div>
+                            <ul class="regions">
+                                <li class="region" data-value="">None</li>
+                                <li class="region" data-value="Africa">Africa</li>
+                                <li class="region" data-value="Americas">Americas</li>
+                                <li class="region" data-value="Asia">Asia</li>
+                                <li class="region" data-value="Europe">Europe</li>
+                                <li class="region" data-value="Oceania">Oceania</li>
+                            </ul>
+                        </div>
+                    </form>
+                    <div class="countries-wrapper">
+                        <div class="countries-container"></div>
+                        <div class="spinner">
+                            <img alt="Loading" src="images/loading.svg" />
+                        </div>
                     </div>
                 </div>
             </main>
