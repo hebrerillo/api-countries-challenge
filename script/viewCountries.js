@@ -112,7 +112,7 @@ class ViewCountries
         let html = '';
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
-            html += `<div class="country ${displayCountry}" data-region="${country.region}">
+            html += `<div class="country ${displayCountry}" data-region="${country.region}" data-code="${country.cca2}">
                             <div class="country__flag">
                                <img src="${country.flags.png}" alt="${country.name.official}"/>
                             </div>
