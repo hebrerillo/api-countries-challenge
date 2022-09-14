@@ -21,15 +21,22 @@ class RestApiCountriesController
      */
     setEvents()
     {
-        this.#inputSearch.addEventListener('keydown', this.waitBeforePerformRequest.bind(this));
+        this.#inputSearch.addEventListener('keypress', this.waitBeforePerformRequest.bind(this));
     }
 
     /**
      * Waits for WAITING_TIME_FOR_REQUEST milliseconds after the user has pressed a key before performing the actual request.
      * This will help to not overkill the UI, because sending a request each time the user presses a key is very inefficient.
+     * 
+     * @param {Event} Event The event that was associated with the 'keydown'.
      */
-    waitBeforePerformRequest()
+    waitBeforePerformRequest(event)
     {
+        if (!/[a-z]/i.test(event.key))
+        {
+            return;
+        }
+        
         this.#view.showSpinner();
         clearTimeout(this.#timeoutIdAfterSeach);
         this.#timeoutIdAfterSeach = setTimeout(this.performSearch.bind(this), WAITING_TIME_FOR_REQUEST);
