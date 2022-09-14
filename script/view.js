@@ -104,12 +104,11 @@ class View
      */
     showCountries(countriesArray)
     {
+        this.#countriesContainer.replaceChildren();
         if (!countriesArray || !Array.isArray(countriesArray))
         {
-            console.error("View::showCountries: Expected an array");
             return;
         }
-        this.#countriesContainer.replaceChildren();
         let html = '';
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
