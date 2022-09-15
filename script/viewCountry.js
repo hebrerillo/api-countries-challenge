@@ -54,17 +54,17 @@ class ViewCountry
         this.#countryContainer.querySelector('[data-country-level-domain]').textContent = country.tld && country.tld[0];
         this.#countryContainer.querySelector('[data-country-currencies]').textContent = this.getCurrencies(country.currencies);
         this.#countryContainer.querySelector('[data-country-languages]').textContent = Object.values(country.languages).join(", ");
-        this.addBorders(country.borders);
+        this.addBorders(country.borderNames);
     }
     
     /**
      * Add buttons related to the borders.
      * 
-     * @param {Array} borders An array containing all the borders of the country.
+     * @param {Array} borderNames An array containing all the borders of the country.
      */
-    addBorders(borders)
+    addBorders(borderNames)
     {
-        if (!borders)
+        if (!borderNames)
         {
             this.#bordersContainer.classList.add('country-data__text-borders--hide');
             return;
@@ -73,8 +73,8 @@ class ViewCountry
         this.#bordersContainer.classList.remove('country-data__text-borders--hide');
 
         let html = '';
-        borders.forEach(border => {
-            html += `<a class="button button--small" data-code="${border}">Spain</a>`;
+        borderNames.forEach(border => {
+            html += `<a class="button button--small" data-code="${border.cca2}">${border.name}</a>`;
         });
         
         document.querySelector('.border-countries').replaceChildren();

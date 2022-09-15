@@ -57,6 +57,7 @@ class RestApiCountriesController
         {
             this.#viewCountries.showSpinner();
             const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
+            await this.getBordersNames(countryData[0]);
             this.#viewCountry.fill(countryData);
             this.#viewCountries.hideSpinner();
             this.#viewCountries.hide();
@@ -71,17 +72,38 @@ class RestApiCountriesController
             this.#viewCountries.hideSpinner();
         }
     }
+    
+    /**
+     * By using the borders contained in 'countryData.borders', this method insert a new field called 'borderNames', which is an array
+     * containing the codes and the names of the borders that the country has.
+     * 
+     * @param {Object} countryData The object with all the information about borders.
+     */
+    async getBordersNames(countryData)
+    {
+        if (!countryData || !countryData.borders)
+        {
+            return;
+        }
+
+        const bordersCodes = countryData.borders.join();
+        const countries = await this.performSearchByCode(bordersCodes);
+        countryData.borderNames = countries.map(country =>  {
+            return {'cca2': country.cca2, 'name': country.name.common};
+        });
+    }
 
     /**
-     * Performs an actual search of countries.
+     * Performs an actual search of countries by code.
      * 
-     * @param {string} code The code of the country to search for.
+     * @param {string} code The code of the country to search for. It also accepts a comma separated list of codes.
+     * @return An array with the countries found.
      */
     async performSearchByCode(code)
     {
         try
         {
-            return await model.performSearch(API_URL + 'alpha/' + code);
+            return await model.performSearch(API_URL + 'alpha?codes=' + code);
         }
         catch (error)
         {
