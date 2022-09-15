@@ -10,6 +10,7 @@ class RestApiCountriesController
     #viewCountry;
     #inputSearch;
     #timeoutIdAfterSeach;
+    #currentScrollTop;
     constructor()
     {
         this.#viewCountry = viewCountry;
@@ -17,6 +18,7 @@ class RestApiCountriesController
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
         this.performSearchByName();
+        this.#currentScrollTop = 0;
     }
 
     /**
@@ -55,6 +57,7 @@ class RestApiCountriesController
     {
         this.#viewCountry.hide();
         this.#viewCountries.show();
+        document.documentElement.scrollTop = this.#currentScrollTop;
     }
 
     /**
@@ -64,6 +67,7 @@ class RestApiCountriesController
      */
     async handleCountryClick(event)
     {
+        this.#currentScrollTop = document.documentElement.scrollTop;
         const clickedCountry = event.target.closest('.country');
         if (!clickedCountry)
         {
