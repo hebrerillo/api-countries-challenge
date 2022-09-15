@@ -27,7 +27,24 @@ class RestApiCountriesController
     {
         this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
+        this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
         this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
+    }
+
+    /**
+     * Handles the click on a border country in the country view.
+     * 
+     * @param {Event} event The event that was triggered in the click.
+     */
+    async handleBorderCountryClick(event)
+    {
+        const clickedBorderCountry = event.target.closest('[data-border-code]');
+        if (!clickedBorderCountry)
+        {
+            return;
+        }
+
+        this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
     }
 
     /**
@@ -53,13 +70,11 @@ class RestApiCountriesController
             return;
         }
 
+        this.#viewCountries.showSpinner();
+
         try
         {
-            this.#viewCountries.showSpinner();
-            const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
-            await this.getBordersNames(countryData[0]);
-            this.#viewCountry.fill(countryData);
-            this.#viewCountries.hideSpinner();
+            await this.fetchCountryAndFillView(clickedCountry.dataset.code);
             this.#viewCountries.hide();
             this.#viewCountry.show();
         }
@@ -72,7 +87,19 @@ class RestApiCountriesController
             this.#viewCountries.hideSpinner();
         }
     }
-    
+
+    /**
+     * Fetch the informaton about a country to fill the country view.
+     * 
+     * @param {string} code The code of the country to fetch.
+     */
+    async fetchCountryAndFillView(code)
+    {
+        const countryData = await this.performSearchByCode(code);
+        await this.getBordersNames(countryData[0]);
+        this.#viewCountry.fill(countryData);
+    }
+
     /**
      * By using the borders contained in 'countryData.borders', this method insert a new field called 'borderNames', which is an array
      * containing the codes and the names of the borders that the country has.
@@ -88,7 +115,7 @@ class RestApiCountriesController
 
         const bordersCodes = countryData.borders.join();
         const countries = await this.performSearchByCode(bordersCodes);
-        countryData.borderNames = countries.map(country =>  {
+        countryData.borderNames = countries.map(country => {
             return {'cca2': country.cca2, 'name': country.name.common};
         });
     }

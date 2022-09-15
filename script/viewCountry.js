@@ -9,6 +9,16 @@ class ViewCountry
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
     }
+
+    /**
+     * Adds the handler that is executed when the user clicks a border country.
+     * 
+     * @param {type} handler The handler.
+     */
+    setBorderCountryClickHandler(handler)
+    {
+        this.#bordersContainer.querySelector('.border-countries').addEventListener('click', handler);
+    }
     
     /**
      * Shows the country container
@@ -74,7 +84,7 @@ class ViewCountry
 
         let html = '';
         borderNames.forEach(border => {
-            html += `<a class="button button--small" data-code="${border.cca2}">${border.name}</a>`;
+            html += `<a class="button button--small" data-border-code="${border.cca2}">${border.name}</a>`;
         });
         
         document.querySelector('.border-countries').replaceChildren();
