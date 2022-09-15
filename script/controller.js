@@ -53,11 +53,23 @@ class RestApiCountriesController
             return;
         }
 
-        this.#viewCountries.showSpinner();
-        const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
-        this.#viewCountries.hideSpinner();
-        this.#viewCountry.show();
-        this.#viewCountries.hide();
+        try
+        {
+            this.#viewCountries.showSpinner();
+            const countryData = await this.performSearchByCode(clickedCountry.dataset.code);
+            this.#viewCountry.fill(countryData);
+            this.#viewCountries.hideSpinner();
+            this.#viewCountries.hide();
+            this.#viewCountry.show();
+        }
+        catch (error)
+        {
+            console.log(error);
+        }
+        finally
+        {
+            this.#viewCountries.hideSpinner();
+        }
     }
 
     /**
@@ -69,7 +81,7 @@ class RestApiCountriesController
     {
         try
         {
-            const data = await model.performSearch(API_URL + 'alpha/' + code);
+            return await model.performSearch(API_URL + 'alpha/' + code);
         }
         catch (error)
         {

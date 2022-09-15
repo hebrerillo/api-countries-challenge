@@ -45,6 +45,10 @@
                     flex-wrap: wrap;
                 }
             }
+            
+            .country-data__text-borders.country-data__text-borders--hide {
+                display: none;
+            }
         }
     }
 
