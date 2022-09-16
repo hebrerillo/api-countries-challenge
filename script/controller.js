@@ -42,13 +42,20 @@ class RestApiCountriesController
      */
     async handleBorderCountryClick(event)
     {
-        const clickedBorderCountry = event.target.closest('[data-border-code]');
-        if (!clickedBorderCountry)
+        try
         {
-            return;
-        }
+            const clickedBorderCountry = event.target.closest('[data-border-code]');
+            if (!clickedBorderCountry)
+            {
+                return;
+            }
 
-        this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
+            this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
+        }
+        catch (error)
+        {
+            console.log(error);
+        }
     }
 
     /**
@@ -76,8 +83,6 @@ class RestApiCountriesController
             return;
         }
 
-        this.showSpinner();
-
         try
         {
             await this.fetchCountryAndFillView(clickedCountry.dataset.code);
@@ -88,10 +93,6 @@ class RestApiCountriesController
         {
             console.log(error);
         }
-        finally
-        {
-            this.hideSpinner();
-        }
     }
 
     /**
@@ -101,9 +102,21 @@ class RestApiCountriesController
      */
     async fetchCountryAndFillView(code)
     {
-        const countryData = await this.performSearchByCode(code);
-        await this.getBordersNames(countryData[0]);
-        this.#viewCountry.fill(countryData);
+        this.showSpinner();
+        try
+        {
+            const countryData = await this.performSearchByCode(code);
+            await this.getBordersNames(countryData[0]);
+            this.#viewCountry.fill(countryData);
+        }
+        catch (error)
+        {
+            throw error;
+        }
+        finally
+        {
+            this.hideSpinner();
+        }
     }
 
     /**
