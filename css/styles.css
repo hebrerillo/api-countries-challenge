@@ -3,6 +3,7 @@
   /* The horizontal padding of some core elements like the header or main */
   --default-box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.08);
   --default-box-shadow-hover: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+  --country-box-width: 33rem;
   /** COLORS **/
   --dark-mode-elements-background: hsl(209, 23%, 22%);
   --light-mode-elements-background: hsl(0, 0%, 100%);
@@ -63,7 +64,8 @@ button {
 @media only screen and (min-width: 90em) {
   :root {
     --main-elements-horizontal-padding: 8rem;
-    --desktop-min-width: 144rem; }
+    --desktop-min-width: 144rem;
+    --country-box-width: 26.4rem; }
 
   html {
     font-size: 62.5%;
@@ -135,7 +137,6 @@ button {
   .button--small {
     font-size: 1.4rem; } }
 .country {
-  width: 33rem;
   height: 42rem;
   box-shadow: var(--default-box-shadow);
   background-color: var(--current-elements-background);
@@ -156,7 +157,6 @@ button {
       row-gap: 0.8rem; }
   @media only screen and (min-width: 90em) {
     .country {
-      width: 26.4rem;
       height: 33.6rem; }
       .country .country__flag .country__flag-img {
         height: 16rem; }
@@ -295,16 +295,10 @@ button {
   min-height: 20rem;
   position: relative; }
   .form-countries-container .countries-wrapper .countries-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 5rem;
-    align-items: center; }
-  @media only screen and (min-width: 44rem) {
-    .form-countries-container .countries-wrapper .countries-container {
-      justify-content: start;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: normal; } }
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, var(--country-box-width)); }
   @media only screen and (min-width: 90em) {
     .form-countries-container .countries-wrapper .countries-container {
       gap: 7.3rem; } }

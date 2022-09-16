@@ -4,19 +4,10 @@
         position: relative;
 
         .countries-container {
-            display: flex;
-            flex-direction: column;
+            display: grid;
             gap: 5rem;
-            align-items: center;
-        }
-
-        @media only screen and (min-width: $minWidthTabletPortrait) {
-            .countries-container {
-                justify-content: start;
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: normal;
-            }
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, var(--country-box-width));
         }
 
         @media only screen and (min-width: $minWidthDesktop) {

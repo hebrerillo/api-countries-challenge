@@ -2,6 +2,7 @@
     --main-elements-horizontal-padding: 2rem; /* The horizontal padding of some core elements like the header or main */
     --default-box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.08);
     --default-box-shadow-hover: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+    --country-box-width: 33rem;
 
     /** COLORS **/
     --dark-mode-elements-background: hsl(209, 23%, 22%);
@@ -75,6 +76,7 @@ button {
     :root {
         --main-elements-horizontal-padding: 8rem;
         --desktop-min-width: 144rem;
+        --country-box-width: 26.4rem;
     }
     
     html {

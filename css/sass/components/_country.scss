@@ -1,5 +1,4 @@
 .country {
-    width: 33rem;
     height: 42rem;
     box-shadow: var(--default-box-shadow);
     background-color: var(--current-elements-background);
@@ -28,7 +27,6 @@
     }
 
     @media only screen and (min-width: $minWidthDesktop) {
-        width: 26.4rem;
         height: 33.6rem;
 
         .country__flag {
