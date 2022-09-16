@@ -157,18 +157,18 @@ class ViewCountries
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
             html += `<div class="country ${displayCountry} country--invisible" data-region="${country.region}" data-code="${country.cca2}">
-                            <div class="country__flag">
-                               <img class="country__flag-img" src="${country.flags.png}" alt="${country.name.official}"/>
+                        <div class="country__flag">
+                            <img class="country__flag-img" src="${country.flags.png}" alt="${country.name.official}"/>
+                        </div>
+                        <div class="country__text">
+                            <h3 class="heading-3">${country.name.official}</h3>
+                            <div class="country__detailed-info">
+                                <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
+                                <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
+                                <div><span class="title-info">Capital: </span><span class="info-item">${country.capital && country.capital[0]}</span></div>
                             </div>
-                            <div class="country__text">
-                                <h3 class="heading-3">${country.name.official}</h3>
-                                <div class="country__detailed-info">
-                                    <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
-                                    <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
-                                    <div><span class="title-info">Capital: </span><span class="info-item">${country.capital && country.capital[0]}</span></div>
-                                </div>
-                            </div>
-                        </div>`;
+                        </div>
+                    </div>`;
         });
         this.#countriesContainer.insertAdjacentHTML('beforeend', html);
     }

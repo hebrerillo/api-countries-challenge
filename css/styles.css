@@ -105,6 +105,9 @@ button {
   font-size: 1.5rem;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
 
+.button--small:hover {
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.5); }
+
 @media only screen and (min-width: 90em) {
   .heading-1 {
     font-size: 3.2rem; }
