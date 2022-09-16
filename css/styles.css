@@ -2,6 +2,7 @@
   --main-elements-horizontal-padding: 2rem;
   /* The horizontal padding of some core elements like the header or main */
   --default-box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.08);
+  --default-box-shadow-hover: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
   /** COLORS **/
   --dark-mode-elements-background: hsl(209, 23%, 22%);
   --light-mode-elements-background: hsl(0, 0%, 100%);
@@ -101,6 +102,9 @@ button {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
   border-radius: 2px; }
 
+.button:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5); }
+
 .button--small {
   font-size: 1.5rem;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
@@ -134,7 +138,9 @@ button {
   height: 42rem;
   box-shadow: var(--default-box-shadow);
   background-color: var(--current-elements-background);
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  transition: all 0.3s;
+  cursor: pointer; }
   .country .country__flag .country__flag-img {
     width: 100%;
     height: 20rem; }
@@ -157,6 +163,9 @@ button {
         padding: 2.5rem 2rem 0 2rem; }
         .country .country__text .heading-3 {
           margin-bottom: 2rem; } }
+
+.country:hover {
+  box-shadow: var(--default-box-shadow-hover); }
 
 .country.country--hidden {
   display: none; }

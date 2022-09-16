@@ -4,6 +4,8 @@
     box-shadow: var(--default-box-shadow);
     background-color: var(--current-elements-background);
     overflow-y: scroll;
+    transition: all 0.3s;
+    cursor: pointer;
     .country__flag {
         .country__flag-img {
             width: 100%;
@@ -42,6 +44,10 @@
             }
         }
     }
+}
+
+.country:hover {
+    box-shadow: var(--default-box-shadow-hover);
 }
 
 .country.country--hidden {
