@@ -2,7 +2,6 @@ class ViewCountries
 {
 
     #selectRegion;
-    #spinner;
     #countriesContainer;
     #controller;
     #currentRegion;
@@ -10,7 +9,6 @@ class ViewCountries
     constructor(controller)
     {
         this.#selectRegion = document.querySelector('.select-region');
-        this.#spinner = document.querySelector('.spinner');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
         this.#controller = controller;
@@ -41,16 +39,6 @@ class ViewCountries
     hide()
     {
         this.#formAndCountriesContainer.classList.add('form-countries-container--hide');
-    }
-
-    showSpinner()
-    {
-        this.#spinner.classList.add('display--spinner');
-    }
-
-    hideSpinner()
-    {
-        this.#spinner.classList.remove('display--spinner');
     }
 
     /**

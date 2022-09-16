@@ -11,9 +11,11 @@ class RestApiCountriesController
     #inputSearch;
     #timeoutIdAfterSeach;
     #currentScrollTop;
+    #spinner;
     constructor()
     {
         this.#viewCountry = viewCountry;
+        this.#spinner = document.querySelector('.spinner');
         this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
@@ -74,7 +76,7 @@ class RestApiCountriesController
             return;
         }
 
-        this.#viewCountries.showSpinner();
+        this.showSpinner();
 
         try
         {
@@ -88,7 +90,7 @@ class RestApiCountriesController
         }
         finally
         {
-            this.#viewCountries.hideSpinner();
+            this.hideSpinner();
         }
     }
 
@@ -181,7 +183,7 @@ class RestApiCountriesController
     {
         try
         {
-            this.#viewCountries.showSpinner();
+            this.showSpinner();
             let finalSearch = this.#inputSearch.value ? ('name/' + this.#inputSearch.value) : 'all';
             const data = await model.performSearch(API_URL + finalSearch);
             this.#viewCountries.showCountries(data);
@@ -192,8 +194,18 @@ class RestApiCountriesController
         }
         finally
         {
-            this.#viewCountries.hideSpinner();
+            this.hideSpinner();
         }
+    }
+
+    showSpinner()
+    {
+        this.#spinner.classList.add('display--spinner');
+    }
+
+    hideSpinner()
+    {
+        this.#spinner.classList.remove('display--spinner');
     }
 }
 

@@ -100,7 +100,8 @@ button {
   font-size: 1.75rem;
   padding: 1rem 3rem;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 2px; }
+  border-radius: 2px;
+  background-color: var(--current-elements-background); }
 
 .button:hover {
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5); }
@@ -172,6 +173,23 @@ button {
 
 .country.country--invisible {
   visibility: hidden; }
+
+.spinner {
+  display: none;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2; }
+  .spinner img {
+    display: block; }
+
+.spinner.display--spinner {
+  display: flex; }
 
 .main-header {
   display: flex;
@@ -281,20 +299,6 @@ button {
     flex-direction: column;
     gap: 5rem;
     align-items: center; }
-  .form-countries-container .countries-wrapper .spinner {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 2; }
-    .form-countries-container .countries-wrapper .spinner img {
-      display: block;
-      margin: 5rem auto 0 auto; }
-  .form-countries-container .countries-wrapper .spinner.display--spinner {
-    display: block; }
   @media only screen and (min-width: 44rem) {
     .form-countries-container .countries-wrapper .countries-container {
       justify-content: start;

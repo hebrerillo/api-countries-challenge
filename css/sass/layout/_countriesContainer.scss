@@ -10,25 +10,6 @@
             align-items: center;
         }
 
-        .spinner {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2;
-            img {
-                display: block;
-                margin: 5rem auto 0 auto;
-            }
-        }
-
-        .spinner.display--spinner {
-            display: block;
-        }
-
         @media only screen and (min-width: $minWidthTabletPortrait) {
             .countries-container {
                 justify-content: start;
