@@ -1,9 +1,13 @@
-.error-search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 4rem;    
-    background-color: var(--current-elements-background);
-    text-transform: uppercase;
-    box-shadow: var(--default-box-shadow);
+.error-container {
+    .error-search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 2rem 4rem;
+        background-color: var(--current-elements-background);
+        text-transform: uppercase;
+        box-shadow: var(--default-box-shadow);
+    }
 }

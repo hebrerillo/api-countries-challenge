@@ -1,9 +1,12 @@
 .country-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8rem;
     .back-button {
-        display: inline-flex;
+        display: flex;
         gap: 0.8rem;
         align-items: center;
-        margin-bottom: 8rem;
+        align-self: start;
 
         svg {
             width: 2.25rem;
