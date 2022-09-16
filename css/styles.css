@@ -115,6 +115,10 @@ button {
 .button--small:hover {
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.5); }
 
+.error-search {
+  font-size: 1.8rem;
+  font-weight: 800; }
+
 @media only screen and (min-width: 90em) {
   .heading-1 {
     font-size: 3.2rem; }
@@ -135,7 +139,10 @@ button {
     font-size: 2rem; }
 
   .button--small {
-    font-size: 1.4rem; } }
+    font-size: 1.4rem; }
+
+  .error-search {
+    font-size: 1.6rem; } }
 .country {
   height: 42rem;
   box-shadow: var(--default-box-shadow);
@@ -219,6 +226,15 @@ button {
 .toTop.toTop--display {
   display: flex; }
 
+.error-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 4rem;
+  background-color: var(--current-elements-background);
+  text-transform: uppercase;
+  box-shadow: var(--default-box-shadow); }
+
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -251,14 +267,15 @@ button {
       margin: 0 auto; } }
 
 .form-search {
-  margin-bottom: 3.8rem; }
+  margin-bottom: 3.8rem;
+  display: grid;
+  row-gap: 5rem; }
   .form-search .input-search-container {
     display: flex;
     align-items: center;
     column-gap: 2.5rem;
     padding: 0 4rem;
     height: 6rem;
-    margin-bottom: 5rem;
     box-shadow: var(--default-box-shadow);
     background-color: var(--current-elements-background); }
     .form-search .input-search-container svg {
@@ -309,15 +326,20 @@ button {
     display: flex; }
   @media only screen and (min-width: 44rem) {
     .form-search {
-      display: flex;
+      grid-template-columns: auto auto;
       justify-content: space-between;
+      grid-template-areas: "input regionSelect" "error error";
       margin-bottom: 4.8rem; }
       .form-search .input-search-container {
-        width: 48rem; }
+        width: 48rem;
+        grid-area: input; }
       .form-search .select-region-wrapper {
-        width: 20rem; }
+        width: 20rem;
+        grid-area: regionSelect; }
       .form-search .input-search-container, .form-search .select-region-wrapper {
-        height: 5.6rem; } }
+        height: 5.6rem; }
+      .form-search .error-search {
+        grid-area: error; } }
 
 .form-countries-container .countries-wrapper {
   min-height: 20rem;

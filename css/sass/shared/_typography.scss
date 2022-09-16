@@ -56,6 +56,11 @@
     box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.5);
 }
 
+.error-search {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
 @media only screen and (min-width: $minWidthDesktop) {
     .heading-1 {
         font-size: 3.2rem;
@@ -80,9 +85,13 @@
     .button {
         font-size: 2rem;
     }
-    
+
     .button--small {
         font-size: 1.4rem;
+    }
+
+    .error-search {
+        font-size: 1.6rem;
     }
 }
 

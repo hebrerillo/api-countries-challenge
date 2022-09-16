@@ -1,12 +1,13 @@
 .form-search {
     margin-bottom: 3.8rem;
+    display: grid;
+    row-gap: 5rem;
     .input-search-container {
         display: flex;
         align-items: center;
         column-gap: 2.5rem;
         padding: 0 4rem;
         height: 6rem;
-        margin-bottom: 5rem;
         box-shadow: var(--default-box-shadow);
         background-color: var(--current-elements-background);
 
@@ -83,19 +84,27 @@
     }
 
     @media only screen and (min-width: $minWidthTabletPortrait) {
-        display: flex;
+        grid-template-columns: auto auto;
         justify-content: space-between;
+        grid-template-areas: "input regionSelect"
+                             "error error";
         margin-bottom: 4.8rem;
         .input-search-container {
             width: 48rem;
+            grid-area: input;
         }
 
         .select-region-wrapper {
             width: 20rem;
+            grid-area: regionSelect;
         }
 
         .input-search-container, .select-region-wrapper {
             height: 5.6rem;
+        }
+        
+        .error-search {
+            grid-area: error;
         }
     }
 }
