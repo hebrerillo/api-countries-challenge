@@ -236,7 +236,7 @@ class RestApiCountriesController
         }
         catch (error)
         {
-            console.log(error);
+            this.#viewCountries.showErrorMessage(error);
         }
         finally
         {

@@ -1,4 +1,7 @@
 import {REQUEST_TIMEOUT} from './config.js';
+import {ERROR_MESSAGE_TIMEOUT} from './config.js';
+import {ERROR_MESSAGE_SERVER_UNREACHABLE} from './config.js';
+
 
 class Model
 {
@@ -21,7 +24,11 @@ class Model
         }
         catch (error)
         {
-            throw error;
+            if (error instanceof DOMException)
+            {
+                throw ERROR_MESSAGE_TIMEOUT;
+            }
+            throw ERROR_MESSAGE_SERVER_UNREACHABLE;
         }
         finally
         {

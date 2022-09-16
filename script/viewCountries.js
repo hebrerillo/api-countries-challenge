@@ -6,6 +6,7 @@ class ViewCountries
     #controller;
     #currentRegion;
     #formAndCountriesContainer;
+    #errorBox;
     constructor(controller)
     {
         this.#selectRegion = document.querySelector('.select-region');
@@ -13,9 +14,21 @@ class ViewCountries
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
         this.#controller = controller;
         this.#currentRegion = '';
+        this.#errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
         this.setEvents();
     }
 
+    showErrorMessage(message)
+    {
+        this.#errorBox.classList.add('error-container--show');
+        this.#errorBox.querySelector('.error-search').textContent = message;
+    }
+    
+    hideErrorMessage()
+    {
+        this.#errorBox.classList.remove('error-container--show');
+    }
+    
     /**
      * Adds a handler when the user clicks a country.
      * @param {function} handler The handler to be executed when the user clicks a country.
