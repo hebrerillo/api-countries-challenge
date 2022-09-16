@@ -12,12 +12,14 @@ class RestApiCountriesController
     #timeoutIdAfterSeach;
     #currentScrollTop;
     #spinner;
+    #scrollToTopButton;
     constructor()
     {
         this.#viewCountry = viewCountry;
         this.#spinner = document.querySelector('.spinner');
         this.#viewCountries = viewCountries;
         this.#inputSearch = document.querySelector('.input-search');
+        this.#scrollToTopButton = document.querySelector('.toTop');
         this.setEvents();
         this.performSearchByName();
         this.#currentScrollTop = 0;
@@ -33,6 +35,12 @@ class RestApiCountriesController
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
         this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
         this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
+        this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
+    }
+
+    scrollDocumentToTop()
+    {
+        document.documentElement.scrollTop = 0;
     }
 
     /**

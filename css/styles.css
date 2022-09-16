@@ -202,8 +202,7 @@ button {
   right: 1rem;
   z-index: 3;
   background-color: var(--current-elements-background);
-  border-radius: 50%;
-  cursor: pointer; }
+  border-radius: 50%; }
   .toTop svg {
     width: 4rem;
     height: 4rem; }
