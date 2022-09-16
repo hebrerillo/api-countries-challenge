@@ -192,7 +192,7 @@ button {
   display: flex; }
 
 .toTop {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -206,6 +206,9 @@ button {
   .toTop svg {
     width: 4rem;
     height: 4rem; }
+
+.toTop.toTop--display {
+  display: flex; }
 
 .main-header {
   display: flex;
