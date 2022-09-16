@@ -3,17 +3,28 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     bottom: 1rem;
     right: 1rem;
     z-index: 3;
-    background-color: var(--current-elements-background);
+    background-color: hsl(0, 0%, 67%);
     border-radius: 50%;
-    
+
     svg {
-        width: 4rem;
-        height: 4rem;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    @media only screen and (min-width: $minWidthDesktop) {
+        width: 8rem;
+        height: 8rem;
+        bottom: 3rem;
+        right: 3rem;
+        svg {
+            width: 4rem;
+            height: 4rem;
+        }
     }
 }
 

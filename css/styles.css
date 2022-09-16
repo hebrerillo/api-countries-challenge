@@ -196,16 +196,25 @@ button {
   align-items: center;
   justify-content: center;
   position: fixed;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   bottom: 1rem;
   right: 1rem;
   z-index: 3;
-  background-color: var(--current-elements-background);
+  background-color: #ababab;
   border-radius: 50%; }
   .toTop svg {
-    width: 4rem;
-    height: 4rem; }
+    width: 3rem;
+    height: 3rem; }
+  @media only screen and (min-width: 90em) {
+    .toTop {
+      width: 8rem;
+      height: 8rem;
+      bottom: 3rem;
+      right: 3rem; }
+      .toTop svg {
+        width: 4rem;
+        height: 4rem; } }
 
 .toTop.toTop--display {
   display: flex; }
