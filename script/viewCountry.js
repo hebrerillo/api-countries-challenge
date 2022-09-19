@@ -72,6 +72,7 @@ class ViewCountry extends View
      */
     show()
     {
+        document.documentElement.scrollTop = 0;
         this.#countryContainer.classList.remove('country-container--hide');
     }
 
