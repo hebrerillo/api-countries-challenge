@@ -39,7 +39,6 @@ class ViewCountries extends View
         this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
         document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
         document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
-        this.#countriesContainer.addEventListener('load', this.handleFlagLoaded.bind(this), true);
         this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
 
         let observer = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
@@ -183,22 +182,6 @@ class ViewCountries extends View
     }
 
     /**
-     * Shows the country once the image has been loaded.
-     * 
-     * @param {Event} event The loaded event.
-     */
-    handleFlagLoaded(event)
-    {
-        const country = event.target.closest('.country');
-        if (!country)
-        {
-            return;
-        }
-
-        country.classList.remove('country--invisible');
-    }
-
-    /**
      * Sets the current region.
      * 
      * @param {Event} event The event triggered in the click
@@ -276,7 +259,7 @@ class ViewCountries extends View
         let html = '';
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
-            html += `<div class="country ${displayCountry} country--invisible" data-region="${country.region}" data-code="${country.cca2}">
+            html += `<div class="country ${displayCountry}" data-region="${country.region}" data-code="${country.cca2}" data-name="${country.name.official}">
                         <div class="country__flag">
                             <img class="country__flag-img" src="${country.flags.png}" alt="${country.name.official}"/>
                         </div>
