@@ -20,6 +20,7 @@ class ViewCountries
 
     showErrorMessage(message)
     {
+        this.cleanCountries();
         this.#errorBox.classList.add('error-container--show');
         this.#errorBox.querySelector('.error-search').textContent = message;
     }
@@ -27,6 +28,7 @@ class ViewCountries
     hideErrorMessage()
     {
         this.#errorBox.classList.remove('error-container--show');
+        this.#errorBox.querySelector('.error-search').replaceChildren();
     }
     
     /**
@@ -149,11 +151,13 @@ class ViewCountries
      */
     showCountries(countriesArray)
     {
-        this.#countriesContainer.replaceChildren();
+        this.cleanCountries();
         if (!countriesArray || !Array.isArray(countriesArray))
         {
             return;
         }
+
+        this.hideErrorMessage();
         let html = '';
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
@@ -173,6 +177,14 @@ class ViewCountries
         });
         this.#countriesContainer.insertAdjacentHTML('beforeend', html);
     }
+
+    /**
+     * Removes all the countries in the view.
+     */
+    cleanCountries()
+    {
+        this.#countriesContainer.replaceChildren();
+    }    
 }
 
 export default new ViewCountries;

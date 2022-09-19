@@ -58,8 +58,8 @@ class RestApiCountriesController
                 return;
             }
 
-            entry.isIntersecting ? this.#scrollToTopButton.classList.remove('toTop--display') 
-                                 : this.#scrollToTopButton.classList.add('toTop--display');
+            entry.isIntersecting ? this.#scrollToTopButton.classList.remove('toTop--display')
+                    : this.#scrollToTopButton.classList.add('toTop--display');
         });
     }
 
@@ -116,16 +116,9 @@ class RestApiCountriesController
             return;
         }
 
-        try
-        {
-            await this.fetchCountryAndFillView(clickedCountry.dataset.code);
-            this.#viewCountries.hide();
-            this.#viewCountry.show();
-        }
-        catch (error)
-        {
-            console.log(error);
-        }
+        await this.fetchCountryAndFillView(clickedCountry.dataset.code);
+        this.#viewCountries.hide();
+        this.#viewCountry.show();
     }
 
     /**
@@ -144,7 +137,7 @@ class RestApiCountriesController
         }
         catch (error)
         {
-            throw error;
+            this.#viewCountry.showErrorMessage(error);
         }
         finally
         {
