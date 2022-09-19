@@ -307,27 +307,35 @@ class ViewCountries extends View
         }
 
         this.hideErrorMessage();
-        let html = '';
+
+        const fragment = document.createDocumentFragment();
         countriesArray.forEach(country => {
-            let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
-            html += `<div class="country ${displayCountry} country--invisible" data-region="${country.region}" data-code="${country.cca2}">
-                        <div class="country__flag">
-                            <img class="country__flag-img" data-flag="${country.flags.png}" src="" alt="${country.name.official}"/>
-                        </div>
-                        <div class="country__text">
-                            <h3 class="heading-3">${country.name.official}</h3>
-                            <div class="country__detailed-info">
-                                <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
-                                <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
-                                <div><span class="title-info">Capital: </span><span class="info-item">${country.capital && country.capital[0]}</span></div>
-                            </div>
-                        </div>
+            
+            let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : ''; //The country will be displayed only if its region matches 
+                                                                                                                           //the current selected region.
+
+            const countryElement = document.createElement('div');
+            countryElement.dataset.region = country.region;
+            countryElement.dataset.code = country.cca2;
+            countryElement.setAttribute('class', 'country ' + displayCountry + ' country--invisible');
+
+            let html = `<div class="country__flag">
+                        <img class="country__flag-img" data-flag="${country.flags.png}" src="" alt="${country.name.official}"/>
+                    </div>
+                    <div class="country__text">
+                        <h3 class="heading-3">${country.name.official}</h3>
+                        <div class="country__detailed-info">
+                            <div><span class="title-info">Population: </span><span class="info-item">${country.population.toLocaleString("en-US")}</span></div>
+                            <div><span class="title-info">Region: </span><span class="info-item">${country.region}</span></div>
+                            <div><span class="title-info">Capital: </span><span class="info-item">${country.capital && country.capital[0]}</span></div>
+                        </div>    
                     </div>`;
+            countryElement.insertAdjacentHTML('beforeend', html);
+            fragment.appendChild(countryElement);
+            this.#countriesObserver.observe(countryElement);
         });
-        this.#countriesContainer.insertAdjacentHTML('beforeend', html);
-        this.#countriesContainer.querySelectorAll('.country').forEach(country => {
-            this.#countriesObserver.observe(country)
-        });
+
+        this.#countriesContainer.appendChild(fragment);
     }
 
     /**
