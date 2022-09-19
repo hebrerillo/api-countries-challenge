@@ -13,6 +13,7 @@ class ViewCountries extends View
     #inputSearch;
     #scrollToTopButton;
     #timeoutIdAfterSeach;
+    #currentScrollTop;
 
     constructor(controller)
     {
@@ -24,6 +25,7 @@ class ViewCountries extends View
         this.#currentRegion = '';
         this.#inputSearch = document.querySelector('.input-search');
         this.#scrollToTopButton = document.querySelector('.toTop');
+        this.#currentScrollTop = 0;
         this.setEvents();
         this.performSearchByName();
     }
@@ -154,6 +156,7 @@ class ViewCountries extends View
     show()
     {
         this.#formAndCountriesContainer.classList.remove('form-countries-container--hide');
+        document.documentElement.scrollTop = this.#currentScrollTop;
     }
 
     /**
@@ -161,6 +164,7 @@ class ViewCountries extends View
      */
     hide()
     {
+        this.#currentScrollTop = document.documentElement.scrollTop; //Save the current scroll in the countries view.
         this.#formAndCountriesContainer.classList.add('form-countries-container--hide');
     }
 

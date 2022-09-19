@@ -7,12 +7,11 @@ class RestApiCountriesController
 {
     #viewCountries;
     #viewCountry;
-    #currentScrollTop; //TODO to view
+
     constructor()
     {
         this.#viewCountry = new ViewCountry(this);
         this.#viewCountries = new ViewCountries(this);
-        this.#currentScrollTop = 0;
     }
 
     /**
@@ -23,7 +22,6 @@ class RestApiCountriesController
     {
         this.#viewCountry.hide();
         this.#viewCountries.show();
-        document.documentElement.scrollTop = this.#currentScrollTop;
     }
 
     /**
@@ -34,7 +32,6 @@ class RestApiCountriesController
      */
     async fromCountriesViewToCountryView(code)
     {
-        this.#currentScrollTop = document.documentElement.scrollTop; //Save the current scroll in the countries view.
         const countryData = await this.fetchCountry(code);
         this.#viewCountry.fill(countryData);
         this.#viewCountries.hide();
