@@ -187,4 +187,4 @@ class ViewCountries
     }    
 }
 
-export default new ViewCountries;
+export default ViewCountries;
