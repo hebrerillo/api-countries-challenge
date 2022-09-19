@@ -1,13 +1,35 @@
-class ViewCountry 
+class ViewCountry
 {
     #backButton;
     #countryContainer;
     #bordersContainer;
+    #errorBox;
     constructor()
     {
         this.#backButton = document.querySelector('.back-button');
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
+        this.#errorBox = this.#countryContainer.querySelector('.error-container');
+    }
+
+    /**
+     * Shows an error message
+     * 
+     * @param {string} message The string containing the message to be shown.
+     */
+    showErrorMessage(message)
+    {
+        this.#errorBox.classList.add('error-container--show');
+        this.#errorBox.querySelector('.error-search').textContent = message;
+    }
+
+    /**
+     * Hides the box containing the error message.
+     */
+    hideErrorMessage()
+    {
+        this.#errorBox.classList.remove('error-container--show');
+        this.#errorBox.querySelector('.error-search').replaceChildren();
     }
 
     /**
@@ -19,7 +41,7 @@ class ViewCountry
     {
         this.#bordersContainer.querySelector('.border-countries').addEventListener('click', handler);
     }
-    
+
     /**
      * Shows the country container
      */
@@ -27,7 +49,7 @@ class ViewCountry
     {
         this.#countryContainer.classList.remove('country-container--hide');
     }
-    
+
     /**
      * Hides the country container
      */
@@ -35,12 +57,12 @@ class ViewCountry
     {
         this.#countryContainer.classList.add('country-container--hide');
     }
-    
+
     setBackButtonHandler(handler)
     {
         this.#backButton.addEventListener('click', handler);
     }
-    
+
     /**
      * Fills all the DOM data related to a specific country by using 'countryData'
      * 
@@ -52,7 +74,7 @@ class ViewCountry
         {
             throw new Error("Information about the country was not found");
         }
-        
+        this.hideErrorMessage();
         const country = countryData[0];
         this.#countryContainer.querySelector('.country-data__flag').src = country.flags.png;
         this.#countryContainer.querySelector('[data-country-name]').textContent = country.name.official;
@@ -66,7 +88,7 @@ class ViewCountry
         this.#countryContainer.querySelector('[data-country-languages]').textContent = Object.values(country.languages).join(", ");
         this.addBorders(country.borderNames);
     }
-    
+
     /**
      * Add buttons related to the borders.
      * 
@@ -86,11 +108,11 @@ class ViewCountry
         borderNames.forEach(border => {
             html += `<a class="button button--small" data-border-code="${border.cca2}">${border.name}</a>`;
         });
-        
+
         document.querySelector('.border-countries').replaceChildren();
         document.querySelector('.border-countries').insertAdjacentHTML('beforeend', html);
     }
-    
+
     /**
      * Using 'currenciesInfo', returns a comma separated string with all the currencies used in the country.
      *

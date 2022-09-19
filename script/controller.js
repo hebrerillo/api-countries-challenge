@@ -77,17 +77,22 @@ class RestApiCountriesController
     {
         try
         {
+            this.showSpinner();
             const clickedBorderCountry = event.target.closest('[data-border-code]');
             if (!clickedBorderCountry)
             {
                 return;
             }
 
-            this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
+            await this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
         }
         catch (error)
         {
-            console.log(error);
+            this.#viewCountry.showErrorMessage(error);
+        }
+        finally
+        {
+            this.hideSpinner();
         }
     }
 
@@ -115,10 +120,21 @@ class RestApiCountriesController
         {
             return;
         }
-
-        await this.fetchCountryAndFillView(clickedCountry.dataset.code);
-        this.#viewCountries.hide();
-        this.#viewCountry.show();
+        try
+        {
+            this.showSpinner();
+            await this.fetchCountryAndFillView(clickedCountry.dataset.code);
+            this.#viewCountries.hide();
+            this.#viewCountry.show();
+        }
+        catch (error)
+        {
+            this.#viewCountries.showErrorMessage(error);
+        }
+        finally
+        {
+            this.hideSpinner();
+        }
     }
 
     /**
@@ -128,26 +144,14 @@ class RestApiCountriesController
      */
     async fetchCountryAndFillView(code)
     {
-        this.showSpinner();
-        try
-        {
-            const countryData = await this.performSearchByCode(code);
-            await this.getBordersNames(countryData[0]);
-            this.#viewCountry.fill(countryData);
-        }
-        catch (error)
-        {
-            this.#viewCountry.showErrorMessage(error);
-        }
-        finally
-        {
-            this.hideSpinner();
-        }
+        const countryData = await this.performSearchByCode(code);
+        await this.getBordersNames(countryData[0]);
+        this.#viewCountry.fill(countryData);
     }
 
     /**
-     * By using the borders contained in 'countryData.borders', this method insert a new field called 'borderNames', which is an array
-     * containing the codes and the names of the borders that the country has.
+     * By using the borders contained in 'countryData.borders', this method inserts a new field called 'borderNames', which is an array
+     * containing the codes and the names of the borders the country has.
      * 
      * @param {Object} countryData The object with all the information about borders.
      */
@@ -173,14 +177,7 @@ class RestApiCountriesController
      */
     async performSearchByCode(code)
     {
-        try
-        {
-            return await model.performSearch(API_URL + 'alpha?codes=' + code);
-        }
-        catch (error)
-        {
-            console.log(error);
-        }
+        return await model.performSearch(API_URL + 'alpha?codes=' + code);
     }
 
     /**
