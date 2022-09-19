@@ -12,24 +12,14 @@ class RestApiCountriesController
     {
         this.#viewCountry = new ViewCountry(this);
         this.#viewCountries = new ViewCountries(this);
-        this.setEvents();
         this.#currentScrollTop = 0;
-    }
-
-    /**
-     * Set the initial events.
-     * 
-     */
-    setEvents()
-    {
-        this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
     }
 
     /**
      * Hides the view of country and shows back the countries view.
      * 
      */
-    handleBackClick()
+    fromCountryViewToCountriesView()
     {
         this.#viewCountry.hide();
         this.#viewCountries.show();

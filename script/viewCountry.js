@@ -18,6 +18,12 @@ class ViewCountry extends View
     setEvents()
     {
         this.#bordersContainer.querySelector('.border-countries').addEventListener('click', this.borderCountryClick.bind(this));
+        this.#backButton.addEventListener('click', this.goBackToCountriesView.bind(this));
+    }
+
+    goBackToCountriesView()
+    {
+        this._controller.fromCountryViewToCountriesView();
     }
 
     /**
