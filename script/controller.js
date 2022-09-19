@@ -23,35 +23,6 @@ class RestApiCountriesController
     setEvents()
     {
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
-        this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
-    }
-
-    /**
-     * Handles the click on a border country in the country view.
-     * 
-     * @param {Event} event The event that was triggered in the click.
-     */
-    async handleBorderCountryClick(event)
-    {
-        try
-        {
-            this.#viewCountries.showSpinner();
-            const clickedBorderCountry = event.target.closest('[data-border-code]');
-            if (!clickedBorderCountry)
-            {
-                return;
-            }
-
-            await this.fetchCountryAndFillCountryView(clickedBorderCountry.dataset.borderCode);
-        }
-        catch (error)
-        {
-            this.#viewCountry.showErrorMessage(error);
-        }
-        finally
-        {
-            this.#viewCountries.hideSpinner();
-        }
     }
 
     /**
@@ -74,21 +45,23 @@ class RestApiCountriesController
     async fromCountriesViewToCountryView(code)
     {
         this.#currentScrollTop = document.documentElement.scrollTop; //Save the current scroll in the countries view.
-        await this.fetchCountryAndFillCountryView(code);
+        const countryData = await this.fetchCountry(code);
+        this.#viewCountry.fill(countryData);
         this.#viewCountries.hide();
         this.#viewCountry.show();
     }
 
     /**
-     * Fetch the informaton about a country to fill the country view.
+     * Returns the informaton about a country.
      * 
      * @param {string} code The code of the country to fetch.
+     * @return The JSON data retrieved from the country with code 'code'.
      */
-    async fetchCountryAndFillCountryView(code)
+    async fetchCountry(code)
     {
         const countryData = await this.performSearchByCode(code);
         await this.getBordersNames(countryData[0]);
-        this.#viewCountry.fill(countryData);
+        return countryData;
     }
 
     /**

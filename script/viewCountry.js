@@ -12,6 +12,43 @@ class ViewCountry extends View
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
         this._errorBox = this.#countryContainer.querySelector('.error-container');
+        this.setEvents();
+    }
+
+    setEvents()
+    {
+        this.#bordersContainer.querySelector('.border-countries').addEventListener('click', this.borderCountryClick.bind(this));
+    }
+
+    /**
+     * Handles the click event in a border country.
+     * 
+     * @param {Event} event The event triggered in the click.
+     */
+    async borderCountryClick(event)
+    {
+        try
+        {
+            this.showSpinner();
+            const clickedBorderCountry = event.target.closest('[data-border-code]');
+            if (!clickedBorderCountry)
+            {
+                return;
+            }
+            
+            const countryData = await this._controller.fetchCountry(clickedBorderCountry.dataset.borderCode);
+            this.fill(countryData);
+            
+        }
+        catch (error)
+        {
+            this.showErrorMessage(error);
+            console.error(error);
+        }
+        finally
+        {
+            this.hideSpinner();
+        }
     }
 
     /**
