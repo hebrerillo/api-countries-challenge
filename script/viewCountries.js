@@ -75,7 +75,7 @@ class ViewCountries extends View
     {
         try
         {
-            this._controller.showSpinner();
+            this.showSpinner();
             const data = await this._controller.getCountriesByName(this.#inputSearch.value);
             this.showCountries(data);
         }
@@ -87,7 +87,7 @@ class ViewCountries extends View
         }
         finally
         {
-            this._controller.hideSpinner();
+            this.hideSpinner();
         }
     }
 

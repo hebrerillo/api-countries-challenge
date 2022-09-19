@@ -2,10 +2,12 @@ class View
 {
     _controller;
     _errorBox;
+    #spinner;
     
     constructor(controller)
     {
         this._controller = controller;
+        this.#spinner = document.querySelector('.spinner');
     }
 
     /**
@@ -26,6 +28,16 @@ class View
     {
         this._errorBox.classList.remove('error-container--show');
         this._errorBox.querySelector('.error-search').replaceChildren();
+    }
+
+    showSpinner()
+    {
+        this.#spinner.classList.add('display--spinner');
+    }
+
+    hideSpinner()
+    {
+        this.#spinner.classList.remove('display--spinner');
     }
 }
 
