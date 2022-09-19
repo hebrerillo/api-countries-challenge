@@ -11,14 +11,14 @@ class ViewCountries extends View
     #formAndCountriesContainer;
     #inputSearch;
     #scrollToTopButton;
-    constructor(controller)
+
+    constructor()
     {
         super();
         this.#selectRegion = document.querySelector('.select-region');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
         this._errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
-        this.#controller = controller;
         this.#currentRegion = '';
         this.#inputSearch = document.querySelector('.input-search');
         this.#scrollToTopButton = document.querySelector('.toTop');
@@ -211,4 +211,4 @@ class ViewCountries extends View
     }
 }
 
-export default ViewCountries;
+export default new ViewCountries;

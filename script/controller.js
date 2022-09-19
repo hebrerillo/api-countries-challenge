@@ -1,6 +1,6 @@
 import {API_URL} from './config.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
-import ViewCountries from './viewCountries.js';
+import viewCountries from './viewCountries.js';
 import viewCountry from './viewCountry.js';
 import model from './model.js';
 
@@ -16,7 +16,8 @@ class RestApiCountriesController
     {
         this.#viewCountry = viewCountry;
         this.#spinner = document.querySelector('.spinner');
-        this.#viewCountries = new ViewCountries(this);
+        this.#viewCountries = viewCountries;
+        this.#viewCountries.setController(this);
         this.#inputSearch = document.querySelector('.input-search');
         this.setEvents();
         this.performSearchByName();
