@@ -43,6 +43,7 @@ class ViewCountries extends View
         document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
         document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
         this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
+        this.#countriesContainer.addEventListener('load', this.countryImageLoaded.bind(this), true);
 
         this.#observerTopButton = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
             root: this.#inputSearch.parent,
@@ -59,12 +60,29 @@ class ViewCountries extends View
     }
 
     /**
+     * Callback that fires when the image of a country is loaded. When that happens, the country itself will be displayed
+     * by removing the class 'country--invisible'.
+     * 
+     * @param {Event} event The event that is fired when the image has finished loading.
+     */
+    countryImageLoaded(event)
+    {
+        const flagImg = event.target.closest('.country__flag-img');
+        if (!flagImg)
+        {
+            return;
+        }
+        const country = flagImg.closest('.country');
+        country.classList.remove('country--invisible');
+        this.#countriesObserver.unobserve(country);
+    }
+
+    /**
      * Callback that will be executed when the countries are displayed. This method takes care of the lazy image load.
      * 
      * @param {Array} entries An array with the entries that potentially intersect with the viewport.
-     * @param {Object} observer The initial observer object.
      */
-    observeCountry(entries, observer)
+    observeCountry(entries)
     {
         entries.forEach(entry => {
             if (!entry.target.closest('.country') || !entry.isIntersecting)
@@ -77,13 +95,7 @@ class ViewCountries extends View
 
             if (img.getAttribute('src').length === 0)
             {
-                img.addEventListener('load', function ()
-                {
-                    this.closest('.country').classList.remove('country--invisible');
-                });
-
-                img.setAttribute('src', img.dataset.flag);
-                observer.unobserve(country);
+                img.setAttribute('src', img.dataset.flag); //The 'load' event will be handled in 'countryImageLoaded'.
             }
         });
     }
