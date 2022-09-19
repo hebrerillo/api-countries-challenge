@@ -136,8 +136,13 @@ class ViewCountries extends View
                 return;
             }
 
-            entry.isIntersecting ? this.#scrollToTopButton.classList.remove('toTop--display')
-                    : this.#scrollToTopButton.classList.add('toTop--display');
+            if (entry.isIntersecting || !this.isVisible())
+            {
+                this.#scrollToTopButton.classList.remove('toTop--display');
+                return;
+            }
+
+            this.#scrollToTopButton.classList.add('toTop--display');
         });
     }
 
@@ -148,6 +153,15 @@ class ViewCountries extends View
     setCountriesClickHandler(handler)
     {
         this.#countriesContainer.addEventListener('click', handler);
+    }
+
+    /**
+     * 
+     * @returns true if this view is displayed, false otherwise.
+     */
+    isVisible()
+    {
+        return !this.#formAndCountriesContainer.classList.contains('form-countries-container--hide');
     }
 
     /**
