@@ -1,6 +1,7 @@
 import View from './view.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
 import {MARGIN_TO_SHOW_TOTOP_BUTTON} from './config.js';
+import {MARGIN_TO_LOAD_COUNTRY_IMAGES} from './config.js';
 
 class ViewCountries extends View
 {
@@ -14,6 +15,8 @@ class ViewCountries extends View
     #scrollToTopButton;
     #timeoutIdAfterSeach;
     #currentScrollTop;
+    #observerTopButton;
+    #countriesObserver;
 
     constructor(controller)
     {
@@ -41,12 +44,48 @@ class ViewCountries extends View
         document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
         this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
 
-        let observer = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
+        this.#observerTopButton = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
             root: this.#inputSearch.parent,
             rootMargin: MARGIN_TO_SHOW_TOTOP_BUTTON
         });
-        observer.observe(this.#inputSearch);
+
+        this.#countriesObserver = new IntersectionObserver(this.observeCountry.bind(this), {
+            root: null,
+            rootMargin: MARGIN_TO_LOAD_COUNTRY_IMAGES
+        });
+
+        this.#observerTopButton.observe(this.#inputSearch);
         this.#countriesContainer.addEventListener('click', this.clickCountry.bind(this));
+    }
+
+    /**
+     * Callback that will be executed when the countries are displayed. This method takes care of the lazy image load.
+     * 
+     * @param {Array} entries An array with the entries that potentially intersect with the viewport.
+     * @param {Object} observer The initial observer object.
+     */
+    observeCountry(entries, observer)
+    {
+        entries.forEach(entry => {
+            if (!entry.target.closest('.country') || !entry.isIntersecting)
+            {
+                return;
+            }
+
+            const country = entry.target;
+            const img = country.querySelector('.country__flag-img');
+
+            if (img.getAttribute('src').length === 0)
+            {
+                img.addEventListener('load', function ()
+                {
+                    this.closest('.country').classList.remove('country--invisible');
+                });
+
+                img.setAttribute('src', img.dataset.flag);
+                observer.unobserve(country);
+            }
+        });
     }
 
     /**
@@ -259,9 +298,9 @@ class ViewCountries extends View
         let html = '';
         countriesArray.forEach(country => {
             let displayCountry = (this.#currentRegion && this.#currentRegion !== country.region) ? 'country--hidden' : '';
-            html += `<div class="country ${displayCountry}" data-region="${country.region}" data-code="${country.cca2}" data-name="${country.name.official}">
+            html += `<div class="country ${displayCountry} country--invisible" data-region="${country.region}" data-code="${country.cca2}">
                         <div class="country__flag">
-                            <img class="country__flag-img" src="${country.flags.png}" alt="${country.name.official}"/>
+                            <img class="country__flag-img" data-flag="${country.flags.png}" src="" alt="${country.name.official}"/>
                         </div>
                         <div class="country__text">
                             <h3 class="heading-3">${country.name.official}</h3>
@@ -274,6 +313,9 @@ class ViewCountries extends View
                     </div>`;
         });
         this.#countriesContainer.insertAdjacentHTML('beforeend', html);
+        this.#countriesContainer.querySelectorAll('.country').forEach(country => {
+            this.#countriesObserver.observe(country)
+        });
     }
 
     /**
