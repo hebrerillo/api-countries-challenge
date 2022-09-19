@@ -1,4 +1,5 @@
 import View from './view.js';
+import {MARGIN_TO_SHOW_TOTOP_BUTTON} from './config.js';
 
 class ViewCountries extends View
 {
@@ -8,6 +9,8 @@ class ViewCountries extends View
     #controller;
     #currentRegion;
     #formAndCountriesContainer;
+    #inputSearch;
+    #scrollToTopButton;
     constructor(controller)
     {
         super();
@@ -17,7 +20,50 @@ class ViewCountries extends View
         this._errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
         this.#controller = controller;
         this.#currentRegion = '';
+        this.#inputSearch = document.querySelector('.input-search');
+        this.#scrollToTopButton = document.querySelector('.toTop');
         this.setEvents();
+    }
+
+    /**
+     * Sets the initial events.
+     */
+    setEvents()
+    {
+        this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
+        document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
+        document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
+        this.#countriesContainer.addEventListener('load', this.handleFlagLoaded.bind(this), true);
+        this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
+
+        let observer = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
+            root: this.#inputSearch.parent,
+            rootMargin: MARGIN_TO_SHOW_TOTOP_BUTTON
+        });
+        observer.observe(this.#inputSearch);
+    }
+
+    scrollDocumentToTop()
+    {
+        document.documentElement.scrollTop = 0;
+    }
+
+    /**
+     * Shows or hides the scroll to top button depending on the scroll of the document.
+     * 
+     * @param {array} entries The entries parameter passed to the Intersection Observer callback.
+     */
+    handleScrollToTopButtonDisplay(entries)
+    {
+        entries.forEach(entry => {
+            if (entry.target !== this.#inputSearch)
+            {
+                return;
+            }
+
+            entry.isIntersecting ? this.#scrollToTopButton.classList.remove('toTop--display')
+                    : this.#scrollToTopButton.classList.add('toTop--display');
+        });
     }
 
     /**
@@ -43,17 +89,6 @@ class ViewCountries extends View
     hide()
     {
         this.#formAndCountriesContainer.classList.add('form-countries-container--hide');
-    }
-
-    /**
-     * Sets the initial events.
-     */
-    setEvents()
-    {
-        this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
-        document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
-        document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
-        this.#countriesContainer.addEventListener('load', this.handleFlagLoaded.bind(this), true);
     }
 
     /**
@@ -173,7 +208,7 @@ class ViewCountries extends View
     cleanCountries()
     {
         this.#countriesContainer.replaceChildren();
-    }    
+    }
 }
 
 export default ViewCountries;

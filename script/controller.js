@@ -1,5 +1,4 @@
 import {API_URL} from './config.js';
-import {MARGIN_TO_SHOW_TOTOP_BUTTON} from './config.js';
 import {WAITING_TIME_FOR_REQUEST} from './config.js';
 import ViewCountries from './viewCountries.js';
 import viewCountry from './viewCountry.js';
@@ -13,14 +12,12 @@ class RestApiCountriesController
     #timeoutIdAfterSeach;
     #currentScrollTop;
     #spinner;
-    #scrollToTopButton;
     constructor()
     {
         this.#viewCountry = viewCountry;
         this.#spinner = document.querySelector('.spinner');
         this.#viewCountries = new ViewCountries(this);
         this.#inputSearch = document.querySelector('.input-search');
-        this.#scrollToTopButton = document.querySelector('.toTop');
         this.setEvents();
         this.performSearchByName();
         this.#currentScrollTop = 0;
@@ -36,36 +33,6 @@ class RestApiCountriesController
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
         this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
         this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
-        this.#scrollToTopButton.addEventListener('click', this.scrollDocumentToTop.bind(this));
-
-        let observer = new IntersectionObserver(this.handleScrollToTopButtonDisplay.bind(this), {
-            root: this.#inputSearch.parent,
-            rootMargin: MARGIN_TO_SHOW_TOTOP_BUTTON
-        });
-        observer.observe(this.#inputSearch);
-    }
-
-    /**
-     * Shows or hides the scroll to top button depending on the scroll of the document.
-     * 
-     * @param {array} entries The entries parameter passed to the Intersection Observer callback.
-     */
-    handleScrollToTopButtonDisplay(entries)
-    {
-        entries.forEach(entry => {
-            if (entry.target !== this.#inputSearch)
-            {
-                return;
-            }
-
-            entry.isIntersecting ? this.#scrollToTopButton.classList.remove('toTop--display')
-                    : this.#scrollToTopButton.classList.add('toTop--display');
-        });
-    }
-
-    scrollDocumentToTop()
-    {
-        document.documentElement.scrollTop = 0;
     }
 
     /**
