@@ -2,7 +2,8 @@
     height: 42rem;
     box-shadow: var(--default-box-shadow);
     background-color: var(--current-elements-background);
-    overflow-y: scroll;
+    overflow-y: auto;
+    scrollbar-width: none;
     transition: all 0.3s;
     cursor: pointer;
     .country__flag {
@@ -42,6 +43,10 @@
             }
         }
     }
+}
+
+.country::-webkit-scrollbar { 
+    display: none; 
 }
 
 .country:hover {
