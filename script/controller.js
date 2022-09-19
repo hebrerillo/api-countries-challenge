@@ -8,11 +8,9 @@ class RestApiCountriesController
     #viewCountries;
     #viewCountry;
     #currentScrollTop; //TODO to view
-    #spinner;//TODo to view.
     constructor()
     {
         this.#viewCountry = new ViewCountry(this);
-        this.#spinner = document.querySelector('.spinner');
         this.#viewCountries = new ViewCountries(this);
         this.setEvents();
         this.#currentScrollTop = 0;
@@ -26,7 +24,6 @@ class RestApiCountriesController
     {
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
         this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
-        this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
     }
 
     /**
@@ -38,14 +35,14 @@ class RestApiCountriesController
     {
         try
         {
-            this.showSpinner();
+            this.#viewCountries.showSpinner();
             const clickedBorderCountry = event.target.closest('[data-border-code]');
             if (!clickedBorderCountry)
             {
                 return;
             }
 
-            await this.fetchCountryAndFillView(clickedBorderCountry.dataset.borderCode);
+            await this.fetchCountryAndFillCountryView(clickedBorderCountry.dataset.borderCode);
         }
         catch (error)
         {
@@ -53,7 +50,7 @@ class RestApiCountriesController
         }
         finally
         {
-            this.hideSpinner();
+            this.#viewCountries.hideSpinner();
         }
     }
 
@@ -69,34 +66,17 @@ class RestApiCountriesController
     }
 
     /**
-     * Handles the click event on a country box in the countries view.
+     * When the user clicks a country in the countries view, this method handles the transition from 
+     * the countries view to the country view.
      * 
-     * @param {Event} event The event that was triggered in the click.
+     * @param {string} code The code of the country to retrieve.
      */
-    async handleCountryClick(event)
+    async fromCountriesViewToCountryView(code)
     {
-        this.#currentScrollTop = document.documentElement.scrollTop;
-        const clickedCountry = event.target.closest('.country');
-        if (!clickedCountry)
-        {
-            return;
-        }
-        try
-        {
-            this.showSpinner();
-            await this.fetchCountryAndFillView(clickedCountry.dataset.code);
-            this.#viewCountries.hide();
-            this.#viewCountry.show();
-        }
-        catch (error)
-        {
-            this.#viewCountries.cleanCountries();
-            this.#viewCountries.showErrorMessage(error);
-        }
-        finally
-        {
-            this.hideSpinner();
-        }
+        this.#currentScrollTop = document.documentElement.scrollTop; //Save the current scroll in the countries view.
+        await this.fetchCountryAndFillCountryView(code);
+        this.#viewCountries.hide();
+        this.#viewCountry.show();
     }
 
     /**
@@ -104,7 +84,7 @@ class RestApiCountriesController
      * 
      * @param {string} code The code of the country to fetch.
      */
-    async fetchCountryAndFillView(code)
+    async fetchCountryAndFillCountryView(code)
     {
         const countryData = await this.performSearchByCode(code);
         await this.getBordersNames(countryData[0]);
@@ -167,16 +147,6 @@ class RestApiCountriesController
     {
         let finalSearch = (name && name.length > 0) ? ('name/' + name) : 'all';
         return await model.performSearch(API_URL + finalSearch);
-    }
-
-    showSpinner()
-    {
-        this.#spinner.classList.add('display--spinner');
-    }
-
-    hideSpinner()
-    {
-        this.#spinner.classList.remove('display--spinner');
     }
 }
 

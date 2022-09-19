@@ -45,6 +45,36 @@ class ViewCountries extends View
             rootMargin: MARGIN_TO_SHOW_TOTOP_BUTTON
         });
         observer.observe(this.#inputSearch);
+        this.#countriesContainer.addEventListener('click', this.clickCountry.bind(this));
+    }
+
+    /**
+     * Handles the click in a country box.
+     * 
+     * @param {Event} event The event triggered in the click.
+     */
+    async clickCountry(event)
+    {
+        const clickedCountry = event.target.closest('.country');
+        if (!clickedCountry)
+        {
+            return;
+        }
+
+        try
+        {
+            this.showSpinner();
+            await this._controller.fromCountriesViewToCountryView(clickedCountry.dataset.code);
+        }
+        catch (error)
+        {
+            this.cleanCountries();
+            this.showErrorMessage(error);
+        }
+        finally
+        {
+            this.hideSpinner();
+        }
     }
 
     scrollDocumentToTop()
