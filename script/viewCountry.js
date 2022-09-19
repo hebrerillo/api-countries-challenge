@@ -5,9 +5,9 @@ class ViewCountry extends View
     #backButton;
     #countryContainer;
     #bordersContainer;
-    constructor()
+    constructor(controller)
     {
-        super();
+        super(controller);
         this.#backButton = document.querySelector('.back-button');
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
@@ -107,4 +107,4 @@ class ViewCountry extends View
     }
 }
 
-export default new ViewCountry;
+export default ViewCountry;

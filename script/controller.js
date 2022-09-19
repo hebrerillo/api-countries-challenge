@@ -1,6 +1,6 @@
 import {API_URL} from './config.js';
 import ViewCountries from './viewCountries.js';
-import viewCountry from './viewCountry.js';
+import ViewCountry from './viewCountry.js';
 import model from './model.js';
 
 class RestApiCountriesController
@@ -11,7 +11,7 @@ class RestApiCountriesController
     #spinner;//TODo to view.
     constructor()
     {
-        this.#viewCountry = viewCountry;
+        this.#viewCountry = new ViewCountry(this);
         this.#spinner = document.querySelector('.spinner');
         this.#viewCountries = new ViewCountries(this);
         this.setEvents();
