@@ -1,6 +1,5 @@
 import {API_URL} from './config.js';
-import {WAITING_TIME_FOR_REQUEST} from './config.js';
-import viewCountries from './viewCountries.js';
+import ViewCountries from './viewCountries.js';
 import viewCountry from './viewCountry.js';
 import model from './model.js';
 
@@ -8,19 +7,14 @@ class RestApiCountriesController
 {
     #viewCountries;
     #viewCountry;
-    #inputSearch;
-    #timeoutIdAfterSeach;
-    #currentScrollTop;
-    #spinner;
+    #currentScrollTop; //TODO to view
+    #spinner;//TODo to view.
     constructor()
     {
         this.#viewCountry = viewCountry;
         this.#spinner = document.querySelector('.spinner');
-        this.#viewCountries = viewCountries;
-        this.#viewCountries.setController(this);
-        this.#inputSearch = document.querySelector('.input-search');
+        this.#viewCountries = new ViewCountries(this);
         this.setEvents();
-        this.performSearchByName();
         this.#currentScrollTop = 0;
     }
 
@@ -30,7 +24,6 @@ class RestApiCountriesController
      */
     setEvents()
     {
-        this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
         this.#viewCountry.setBackButtonHandler(this.handleBackClick.bind(this));
         this.#viewCountry.setBorderCountryClickHandler(this.handleBorderCountryClick.bind(this));
         this.#viewCountries.setCountriesClickHandler(this.handleCountryClick.bind(this));
@@ -150,22 +143,6 @@ class RestApiCountriesController
     }
 
     /**
-     * Waits for WAITING_TIME_FOR_REQUEST milliseconds after the user has pressed a key before performing the actual request.
-     * This will help to not overkill the UI, because sending a request each time the user presses a key is very inefficient.
-     * 
-     */
-    waitBeforePerformRequest()
-    {
-        if (!this.checkInputCountry(this.#inputSearch.value))
-        {
-            return;
-        }
-
-        clearTimeout(this.#timeoutIdAfterSeach);
-        this.#timeoutIdAfterSeach = setTimeout(this.performSearchByName.bind(this), WAITING_TIME_FOR_REQUEST);
-    }
-
-    /**
      * Checks whether the input country has valid characters.
      * 
      * @param {String} inputCountry The input country to check.
@@ -182,26 +159,14 @@ class RestApiCountriesController
     }
 
     /**
-     * Performs an actual search of countries.
+     * Performs a search of countries by name.
+     * 
+     * @param {string} name The query input by the user.
      */
-    async performSearchByName()
+    async getCountriesByName(name = '')
     {
-        try
-        {
-            this.showSpinner();
-            let finalSearch = this.#inputSearch.value ? ('name/' + this.#inputSearch.value) : 'all';
-            const data = await model.performSearch(API_URL + finalSearch);
-            this.#viewCountries.showCountries(data);
-        }
-        catch (error)
-        {
-            this.#viewCountries.cleanCountries();
-            this.#viewCountries.showErrorMessage(error);
-        }
-        finally
-        {
-            this.hideSpinner();
-        }
+        let finalSearch = (name && name.length > 0) ? ('name/' + name) : 'all';
+        return await model.performSearch(API_URL + finalSearch);
     }
 
     showSpinner()

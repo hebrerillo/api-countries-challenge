@@ -1,14 +1,9 @@
 class View
 {
-    _errorBox;
     _controller;
-
-    /**
-     * Sets the view controller.
-     * 
-     * @param {Object} controller The controller of this view.
-     */
-    setController(controller)
+    _errorBox;
+    
+    constructor(controller)
     {
         this._controller = controller;
     }

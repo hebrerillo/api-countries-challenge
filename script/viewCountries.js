@@ -1,4 +1,5 @@
 import View from './view.js';
+import {WAITING_TIME_FOR_REQUEST} from './config.js';
 import {MARGIN_TO_SHOW_TOTOP_BUTTON} from './config.js';
 
 class ViewCountries extends View
@@ -11,10 +12,11 @@ class ViewCountries extends View
     #formAndCountriesContainer;
     #inputSearch;
     #scrollToTopButton;
+    #timeoutIdAfterSeach;
 
-    constructor()
+    constructor(controller)
     {
-        super();
+        super(controller);
         this.#selectRegion = document.querySelector('.select-region');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
@@ -23,6 +25,7 @@ class ViewCountries extends View
         this.#inputSearch = document.querySelector('.input-search');
         this.#scrollToTopButton = document.querySelector('.toTop');
         this.setEvents();
+        this.performSearchByName();
     }
 
     /**
@@ -30,6 +33,7 @@ class ViewCountries extends View
      */
     setEvents()
     {
+        this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
         this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
         document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
         document.querySelector('.regions').addEventListener('click', this.setCurrentRegion.bind(this));
@@ -46,6 +50,45 @@ class ViewCountries extends View
     scrollDocumentToTop()
     {
         document.documentElement.scrollTop = 0;
+    }
+
+    /**
+     * Waits for WAITING_TIME_FOR_REQUEST milliseconds after the user has pressed a key before performing the actual request.
+     * This will help to not overkill the UI, because sending a request each time the user presses a key is very inefficient.
+     * 
+     */
+    waitBeforePerformRequest()
+    {
+        if (!this._controller.checkInputCountry(this.#inputSearch.value))
+        {
+            return;
+        }
+
+        clearTimeout(this.#timeoutIdAfterSeach);
+        this.#timeoutIdAfterSeach = setTimeout(this.performSearchByName.bind(this), WAITING_TIME_FOR_REQUEST);
+    }
+
+    /**
+     * Performs an actual search of countries.
+     */
+    async performSearchByName()
+    {
+        try
+        {
+            this._controller.showSpinner();
+            const data = await this._controller.getCountriesByName(this.#inputSearch.value);
+            this.showCountries(data);
+        }
+        catch (error)
+        {
+            this.cleanCountries();
+            this.showErrorMessage(error);
+            console.error(error);
+        }
+        finally
+        {
+            this._controller.hideSpinner();
+        }
     }
 
     /**
@@ -211,4 +254,4 @@ class ViewCountries extends View
     }
 }
 
-export default new ViewCountries;
+export default ViewCountries;
