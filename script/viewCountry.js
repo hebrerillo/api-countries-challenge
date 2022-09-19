@@ -1,35 +1,17 @@
-class ViewCountry
+import View from './view.js';
+
+class ViewCountry extends View
 {
     #backButton;
     #countryContainer;
     #bordersContainer;
-    #errorBox;
     constructor()
     {
+        super();
         this.#backButton = document.querySelector('.back-button');
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
-        this.#errorBox = this.#countryContainer.querySelector('.error-container');
-    }
-
-    /**
-     * Shows an error message
-     * 
-     * @param {string} message The string containing the message to be shown.
-     */
-    showErrorMessage(message)
-    {
-        this.#errorBox.classList.add('error-container--show');
-        this.#errorBox.querySelector('.error-search').textContent = message;
-    }
-
-    /**
-     * Hides the box containing the error message.
-     */
-    hideErrorMessage()
-    {
-        this.#errorBox.classList.remove('error-container--show');
-        this.#errorBox.querySelector('.error-search').replaceChildren();
+        this._errorBox = this.#countryContainer.querySelector('.error-container');
     }
 
     /**

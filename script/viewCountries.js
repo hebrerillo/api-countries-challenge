@@ -1,4 +1,6 @@
-class ViewCountries
+import View from './view.js';
+
+class ViewCountries extends View
 {
 
     #selectRegion;
@@ -6,31 +8,18 @@ class ViewCountries
     #controller;
     #currentRegion;
     #formAndCountriesContainer;
-    #errorBox;
     constructor(controller)
     {
+        super();
         this.#selectRegion = document.querySelector('.select-region');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
+        this._errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
         this.#controller = controller;
         this.#currentRegion = '';
-        this.#errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
         this.setEvents();
     }
 
-    showErrorMessage(message)
-    {
-        this.cleanCountries();
-        this.#errorBox.classList.add('error-container--show');
-        this.#errorBox.querySelector('.error-search').textContent = message;
-    }
-    
-    hideErrorMessage()
-    {
-        this.#errorBox.classList.remove('error-container--show');
-        this.#errorBox.querySelector('.error-search').replaceChildren();
-    }
-    
     /**
      * Adds a handler when the user clicks a country.
      * @param {function} handler The handler to be executed when the user clicks a country.

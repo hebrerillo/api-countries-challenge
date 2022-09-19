@@ -129,6 +129,7 @@ class RestApiCountriesController
         }
         catch (error)
         {
+            this.#viewCountries.cleanCountries();
             this.#viewCountries.showErrorMessage(error);
         }
         finally
@@ -226,6 +227,7 @@ class RestApiCountriesController
         }
         catch (error)
         {
+            this.#viewCountries.cleanCountries();
             this.#viewCountries.showErrorMessage(error);
         }
         finally
