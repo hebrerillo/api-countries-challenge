@@ -3,6 +3,10 @@ import {WAITING_TIME_FOR_REQUEST} from './config.js';
 import {MARGIN_TO_SHOW_TOTOP_BUTTON} from './config.js';
 import {MARGIN_TO_LOAD_COUNTRY_IMAGES} from './config.js';
 
+/**
+ * This view corresponds with the home page that shows all countries or countries filtered by
+ * name or region (or both).
+ */
 class ViewCountries extends View
 {
 

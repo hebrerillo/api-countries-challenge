@@ -1,5 +1,9 @@
 import View from './view.js';
 
+/**
+ * This view corresponds with the view that shows all the detailed information
+ * about a country.
+ */
 class ViewCountry extends View
 {
     #backButton;
@@ -21,6 +25,9 @@ class ViewCountry extends View
         this.#backButton.addEventListener('click', this.goBackToCountriesView.bind(this));
     }
 
+    /**
+     * When the user clicks the back button to go back to the home page.
+     */
     goBackToCountriesView()
     {
         this._controller.fromCountryViewToCountriesView();
@@ -82,11 +89,6 @@ class ViewCountry extends View
     hide()
     {
         this.#countryContainer.classList.add('country-container--hide');
-    }
-
-    setBackButtonHandler(handler)
-    {
-        this.#backButton.addEventListener('click', handler);
     }
 
     /**

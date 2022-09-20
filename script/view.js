@@ -1,3 +1,6 @@
+/**
+ * The parent class of all views.
+ */
 class View
 {
     _controller;
