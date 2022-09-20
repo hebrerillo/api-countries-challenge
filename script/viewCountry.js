@@ -41,10 +41,10 @@ class ViewCountry extends View
             {
                 return;
             }
-            
+
             const countryData = await this._controller.fetchCountry(clickedBorderCountry.dataset.borderCode);
             this.fill(countryData);
-            
+
         }
         catch (error)
         {
@@ -104,14 +104,14 @@ class ViewCountry extends View
         const country = countryData[0];
         this.#countryContainer.querySelector('.country-data__flag').src = country.flags.png;
         this.#countryContainer.querySelector('[data-country-name]').textContent = country.name.official;
-        this.#countryContainer.querySelector('[data-country-native-name]').textContent = country.name.nativeName[Object.keys(country.name.nativeName)[0]].official;
+        this.#countryContainer.querySelector('[data-country-native-name]').textContent = country.name.nativeName ? country.name.nativeName[Object.keys(country.name.nativeName)[0]].official : '';
         this.#countryContainer.querySelector('[data-country-population]').textContent = country.population.toLocaleString("en-US");
         this.#countryContainer.querySelector('[data-country-region]').textContent = country.region;
         this.#countryContainer.querySelector('[data-country-subregion]').textContent = country.subregion;
         this.#countryContainer.querySelector('[data-country-capital]').textContent = country.capital && country.capital[0];
         this.#countryContainer.querySelector('[data-country-level-domain]').textContent = country.tld && country.tld[0];
         this.#countryContainer.querySelector('[data-country-currencies]').textContent = this.getCurrencies(country.currencies);
-        this.#countryContainer.querySelector('[data-country-languages]').textContent = Object.values(country.languages).join(", ");
+        this.#countryContainer.querySelector('[data-country-languages]').textContent = country.languages ? Object.values(country.languages).join(", ") : '';
         this.addBorders(country.borderNames);
     }
 
@@ -147,7 +147,7 @@ class ViewCountry extends View
      */
     getCurrencies(currenciesInfo)
     {
-        return Object.values(currenciesInfo).map(currency => currency.name).join(", ");
+        return currenciesInfo ? Object.values(currenciesInfo).map(currency => currency.name).join(", ") : '';
     }
 }
 

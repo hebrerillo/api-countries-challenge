@@ -122,6 +122,7 @@ class ViewCountries extends View
         {
             this.cleanCountries();
             this.showErrorMessage(error);
+            console.error(error);
         }
         finally
         {
