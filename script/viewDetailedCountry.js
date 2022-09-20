@@ -4,7 +4,7 @@ import View from './view.js';
  * This view corresponds with the view that shows all the detailed information
  * about a country.
  */
-class ViewCountry extends View
+class ViewDetailedCountry extends View
 {
     #backButton;
     #countryContainer;
@@ -153,4 +153,4 @@ class ViewCountry extends View
     }
 }
 
-export default ViewCountry;
+export default ViewDetailedCountry;

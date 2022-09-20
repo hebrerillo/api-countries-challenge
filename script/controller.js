@@ -1,6 +1,6 @@
 import {API_URL} from './config.js';
 import ViewCountries from './viewCountries.js';
-import ViewCountry from './viewCountry.js';
+import ViewDetailedCountry from './viewDetailedCountry.js';
 import model from './model.js';
 
 class RestApiCountriesController
@@ -10,7 +10,7 @@ class RestApiCountriesController
 
     constructor()
     {
-        this.#viewCountry = new ViewCountry(this);
+        this.#viewCountry = new ViewDetailedCountry(this);
         this.#viewCountries = new ViewCountries(this);
     }
 
