@@ -9,12 +9,14 @@ class ViewDetailedCountry extends View
     #backButton;
     #countryContainer;
     #bordersContainer;
+    #countryData;
     constructor(controller)
     {
         super(controller);
         this.#backButton = document.querySelector('.back-button');
         this.#countryContainer = document.querySelector('.country-container');
         this.#bordersContainer = document.querySelector('.country-data__text-borders');
+        this.#countryData = this.#countryContainer.querySelector('.country-data');
         this._errorBox = this.#countryContainer.querySelector('.error-container');
         this.setEvents();
     }
@@ -104,16 +106,25 @@ class ViewDetailedCountry extends View
         }
         this.hideErrorMessage();
         const country = countryData[0];
-        this.#countryContainer.querySelector('.country-data__flag').src = country.flags.png;
-        this.#countryContainer.querySelector('[data-country-name]').textContent = country.name.official;
-        this.#countryContainer.querySelector('[data-country-native-name]').textContent = country.name.nativeName ? country.name.nativeName[Object.keys(country.name.nativeName)[0]].official : '';
-        this.#countryContainer.querySelector('[data-country-population]').textContent = country.population.toLocaleString("en-US");
-        this.#countryContainer.querySelector('[data-country-region]').textContent = country.region;
-        this.#countryContainer.querySelector('[data-country-subregion]').textContent = country.subregion;
-        this.#countryContainer.querySelector('[data-country-capital]').textContent = country.capital && country.capital[0];
-        this.#countryContainer.querySelector('[data-country-level-domain]').textContent = country.tld && country.tld[0];
-        this.#countryContainer.querySelector('[data-country-currencies]').textContent = this.getCurrencies(country.currencies);
-        this.#countryContainer.querySelector('[data-country-languages]').textContent = country.languages ? Object.values(country.languages).join(", ") : '';
+        let countryImage = this.#countryData.querySelector('.country-data__flag');
+        if (!countryImage)
+        {
+            this.#countryData.insertAdjacentHTML('afterbegin', '<img class="country-data__flag" alt="" src="'+ country.flags.png +'"/>');
+        }
+        else
+        {
+            countryImage.src = country.flags.png;
+        }
+
+        this.#countryData.querySelector('[data-country-name]').textContent = country.name.official;
+        this.#countryData.querySelector('[data-country-native-name]').textContent = country.name.nativeName ? country.name.nativeName[Object.keys(country.name.nativeName)[0]].official : '';
+        this.#countryData.querySelector('[data-country-population]').textContent = country.population.toLocaleString("en-US");
+        this.#countryData.querySelector('[data-country-region]').textContent = country.region;
+        this.#countryData.querySelector('[data-country-subregion]').textContent = country.subregion;
+        this.#countryData.querySelector('[data-country-capital]').textContent = country.capital && country.capital[0];
+        this.#countryData.querySelector('[data-country-level-domain]').textContent = country.tld && country.tld[0];
+        this.#countryData.querySelector('[data-country-currencies]').textContent = this.getCurrencies(country.currencies);
+        this.#countryData.querySelector('[data-country-languages]').textContent = country.languages ? Object.values(country.languages).join(", ") : '';
         this.addBorders(country.borderNames);
     }
 
