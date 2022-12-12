@@ -12,8 +12,7 @@ Live Site URL: https://rest-apicountries.netlify.app/
 - Vanilla JavaScript
 - Sass
 
-This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). 
-
+### Layout
 The layout is implemented from a Figma design with the following screen sizes:
 - Mobile 375 x 667
 - Tablet 768 x 1024
@@ -33,6 +32,7 @@ Users should be able to:
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode *(optional)*
 
+[Frontend mentor challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 ### Screenshot
 
 ![](./screenshot.png)
@@ -40,5 +40,4 @@ Users should be able to:
 ## Author
 
 - Frontend Mentor - [hebrerillo](https://www.frontendmentor.io/profile/hebrerillo)
-
 
