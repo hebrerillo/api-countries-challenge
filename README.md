@@ -1,4 +1,4 @@
-# Frontend Mentor - REST Countries API with color theme switcher solution 
+# REST Countries API using asynchronous JavaScript
 
 Live Site URL: https://rest-apicountries.netlify.app/
 
@@ -14,7 +14,7 @@ Live Site URL: https://rest-apicountries.netlify.app/
 
 This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). 
 
-The layout implementation followed a Figma design with the following screen sizes:
+The layout is implemented from a Figma design with the following screen sizes:
 - Mobile 375 x 667
 - Tablet 768 x 1024
 - Desktop 1440 x 900
