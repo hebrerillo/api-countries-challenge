@@ -13,6 +13,7 @@
         @media only screen and (min-width: $minWidthDesktop) {
             .countries-container {
                 gap: 7.3rem;
+                justify-content: space-between;
             }
         }
     }
