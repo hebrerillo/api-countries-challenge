@@ -362,7 +362,8 @@ button {
     grid-template-columns: repeat(auto-fit, var(--country-box-width)); }
   @media only screen and (min-width: 90em) {
     .form-countries-container .countries-wrapper .countries-container {
-      gap: 7.3rem; } }
+      gap: 7.3rem;
+      justify-content: space-between; } }
 
 .form-countries-container.form-countries-container--hide {
   display: none; }
