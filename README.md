@@ -15,7 +15,6 @@ Live Site URL: https://rest-apicountries.netlify.app/
 ### Layout
 The layout is implemented from a Figma design with the following screen sizes:
 - Mobile 375 x 667
-- Tablet 768 x 1024
 - Desktop 1440 x 900
 
 What happens between those screen sizes is something entirely made up by me.
