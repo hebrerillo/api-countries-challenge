@@ -42,6 +42,7 @@ class ViewCountries extends View
      */
     setEvents()
     {
+        window.addEventListener('click', this.handleWindowClick.bind(this));
         this.#inputSearch.addEventListener('keyup', this.waitBeforePerformRequest.bind(this));
         this.#selectRegion.addEventListener('click', this.toggleRegionsDisplay.bind(this));
         document.querySelector('#theme-button').addEventListener('click', this.switchMode.bind(this));
@@ -61,6 +62,20 @@ class ViewCountries extends View
 
         this.#observerTopButton.observe(this.#inputSearch);
         this.#countriesContainer.addEventListener('click', this.clickCountry.bind(this));
+    }
+
+    /**
+     * Handles the click event in the whole window object.
+     *
+     * @param {Event} event The event triggered in the click.
+     */
+    handleWindowClick(event)
+    {
+        //If the user clicks outside the input to select the region, then close it.
+        if (!event.target.closest('.select-region-wrapper'))
+        {
+           this.#selectRegion.closest('.select-region-wrapper').classList.remove('display--regions');
+        }
     }
 
     /**
