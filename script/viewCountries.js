@@ -15,6 +15,7 @@ class ViewCountries extends View
     #controller;
     #currentRegion;
     #formAndCountriesContainer;
+    #formSearch;
     #inputSearch;
     #scrollToTopButton;
     #timeoutIdAfterSeach;
@@ -28,6 +29,7 @@ class ViewCountries extends View
         this.#selectRegion = document.querySelector('.select-region');
         this.#countriesContainer = document.querySelector('.countries-container');
         this.#formAndCountriesContainer = document.querySelector('.form-countries-container');
+        this.#formSearch = this.#formAndCountriesContainer.querySelector('.form-search');
         this._errorBox = this.#formAndCountriesContainer.querySelector('.error-container');
         this.#currentRegion = '';
         this.#inputSearch = document.querySelector('.input-search');
@@ -62,6 +64,17 @@ class ViewCountries extends View
 
         this.#observerTopButton.observe(this.#inputSearch);
         this.#countriesContainer.addEventListener('click', this.clickCountry.bind(this));
+        this.#formSearch.addEventListener('submit', this.handleFormSearchSubmission.bind(this));
+    }
+
+    /**
+     * Handles the submission of the countries search form.
+     * 
+     * @param {type} event Just preventing the default action of the event.
+     */
+    handleFormSearchSubmission(event)
+    {
+        event.preventDefault();
     }
 
     /**
