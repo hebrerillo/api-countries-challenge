@@ -359,7 +359,7 @@ button {
     display: grid;
     gap: 5rem;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, var(--country-box-width)); }
+    grid-template-columns: repeat(auto-fill, var(--country-box-width)); }
   @media only screen and (min-width: 90em) {
     .form-countries-container .countries-wrapper .countries-container {
       gap: 7.3rem;
