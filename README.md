@@ -5,12 +5,11 @@ Live Site URL: https://rest-apicountries.netlify.app/
 ### Built with
 
 - Asynchronous JavaScript
-- Lazy loading of images
+- Lazy loading of images and fragments
 - Mobile-first workflow
 - Semantic HTML5 markup
 - Flexbox/Grid layouts
-- Vanilla JavaScript
-- Sass
+- SASS
 
 ### Layout
 The layout is implemented from a Figma design with the following screen sizes:
