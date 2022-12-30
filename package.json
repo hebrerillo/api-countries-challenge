@@ -1,0 +1,22 @@
+{
+  "name": "rest-countries-api",
+  "version": "0.1.0",
+  "description": "An advanced frontend challenge from the frontendmentor.io platform",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint script/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hebrerillo/api-countries-challenge.git"
+  },
+  "author": "Jesus Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hebrerillo/api-countries-challenge/issues"
+  },
+  "homepage": "https://github.com/hebrerillo/api-countries-challenge#readme",
+  "devDependencies": {
+    "eslint": "^8.30.0"
+  }
+}
