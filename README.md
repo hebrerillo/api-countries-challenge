@@ -5,7 +5,7 @@ Live Site URL: https://rest-apicountries.netlify.app/
 ### Built with
 
 - Asynchronous JavaScript
-- Lazy loading of images and fragments
+- Lazy loading of images
 - Mobile-first workflow
 - Semantic HTML5 markup
 - Flexbox/Grid layouts
