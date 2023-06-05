@@ -44,7 +44,7 @@ class ViewDetailedCountry extends View
     {
         try
         {
-            this.showSpinner();
+            this.showSpinner(View.DefaultSpinnerTimeout);
             const clickedBorderCountry = event.target.closest('[data-border-code]');
             if (!clickedBorderCountry)
             {
@@ -58,7 +58,6 @@ class ViewDetailedCountry extends View
         catch (error)
         {
             this.showErrorMessage(error);
-            console.error(error);
         }
         finally
         {

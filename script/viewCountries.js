@@ -36,7 +36,7 @@ class ViewCountries extends View
         this.#scrollToTopButton = document.querySelector('.toTop');
         this.#currentScrollTop = 0;
         this.setEvents();
-        this.performSearchByName();
+        this.performSearchByName(0);
     }
 
     /**
@@ -147,7 +147,7 @@ class ViewCountries extends View
 
         try
         {
-            this.showSpinner();
+            this.showSpinner(View.DefaultSpinnerTimeout);
             await this._controller.fromCountriesViewToCountryView(clickedCountry.dataset.code);
         }
         catch (error)
@@ -185,12 +185,14 @@ class ViewCountries extends View
 
     /**
      * Performs an actual search of countries.
+     * 
+     * @param {Number} spinnerDelay The time out after which the spinner will be shown.
      */
-    async performSearchByName()
+    async performSearchByName(spinnerDelay = View.DefaultSpinnerTimeout)
     {
         try
         {
-            this.showSpinner();
+            this.showSpinner(spinnerDelay);
             const data = await this._controller.getCountriesByName(this.#inputSearch.value);
             this.showCountries(data);
         }
@@ -198,7 +200,6 @@ class ViewCountries extends View
         {
             this.cleanCountries();
             this.showErrorMessage(error);
-            console.error(error);
         }
         finally
         {

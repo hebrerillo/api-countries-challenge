@@ -3,14 +3,20 @@
  */
 class View
 {
+    static get DefaultSpinnerTimeout() { 
+        return 700; 
+    }
+
     _controller;
     _errorBox;
     #spinner;
+    #timeoutSpinner; //The timeout after which the timeout will be shown
     
     constructor(controller)
     {
         this._controller = controller;
         this.#spinner = document.querySelector('.spinner');
+        this.#timeoutSpinner = null;
     }
 
     /**
@@ -33,13 +39,13 @@ class View
         this._errorBox.querySelector('.error-search').replaceChildren();
     }
 
-    showSpinner()
-    {
-        this.#spinner.classList.add('display--spinner');
+    showSpinner(delay = View.DefaultSpinnerTimeout) {
+        this.#timeoutSpinner = window.setTimeout(() => { this.#spinner.classList.add('display--spinner') }, delay);
     }
 
     hideSpinner()
     {
+        window.clearTimeout(this.#timeoutSpinner);
         this.#spinner.classList.remove('display--spinner');
     }
 }
